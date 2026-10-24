@@ -1,0 +1,8 @@
+{
+  "appId": "com.sanarfarmaco.app",
+  "appName": "Sanar Farmaco",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

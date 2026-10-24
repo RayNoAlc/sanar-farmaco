@@ -1,0 +1,5 @@
+package com.sanarfarmaco.app;
+
+import com.getcapacitor.BridgeActivity;
+
+public class MainActivity extends BridgeActivity {}

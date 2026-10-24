@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Sanar Farmaco</string>
+    <string name="title_activity_main">Sanar Farmaco</string>
+    <string name="package_name">com.sanarfarmaco.app</string>
+    <string name="custom_url_scheme">com.sanarfarmaco.app</string>
+</resources>

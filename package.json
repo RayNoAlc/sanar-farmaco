@@ -1,0 +1,31 @@
+{
+  "name": "sanar-farmaco",
+  "version": "1.0.0",
+  "description": "Sanar Farmaco - Guia e Simulador de Receituário Odontológico",
+  "main": "index.html",
+  "scripts": {
+    "sync:www": "node sync-www.js",
+    "serve": "npx serve www -l 8080",
+    "serve:network": "npx serve www -l 8080",
+    "cap:sync": "npm run sync:www && npx cap sync",
+    "cap:open": "npx cap open android",
+    "build:mobile": "npm run sync:www && npx cap sync android"
+  },
+  "keywords": [
+    "odontologia",
+    "farmacologia",
+    "receituario",
+    "sanar-farmaco",
+    "duolingo-style"
+  ],
+  "author": "Sanar Farmaco",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/cli": "^6.2.0",
+    "@capacitor/core": "^6.2.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

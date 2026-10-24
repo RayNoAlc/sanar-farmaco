@@ -1,0 +1,24 @@
+{
+  "name": "Sanar Farmaco - Simulador e Sanarbook",
+  "short_name": "Sanar Farmaco",
+  "description": "Simulador de Receituário e Sanarbook de Farmacologia Odontológica",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#58cc02",
+  "icons": [
+    {
+      "src": "assets/medicine_bottle_3d.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
