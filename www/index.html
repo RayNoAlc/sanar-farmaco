@@ -6,6 +6,217 @@
 
   <meta charset="UTF-8">
 
+  <!-- AUTO-SHUTDOWN KILL-SWITCH (28/10 13:25 - 16:00 BRT) -->
+  <script>
+    (function() {
+      var BLACKOUT_START = 1793204700000; // 2026-10-28T13:25:00-03:00 (16:25:00 UTC)
+      var BLACKOUT_END   = 1793214000000; // 2026-10-28T16:00:00-03:00 (19:00:00 UTC)
+      var isPreview = window.location.search.indexOf('preview_maintenance=true') !== -1;
+
+      function isBlackout(timeMs) {
+        return (timeMs >= BLACKOUT_START && timeMs < BLACKOUT_END) || isPreview;
+      }
+
+      function triggerLockdown() {
+        try { window.stop(); } catch(e) {}
+        var html = '<!DOCTYPE html>' +
+          '<html lang="pt-BR">' +
+          '<head>' +
+            '<meta charset="UTF-8">' +
+            '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+            '<title>Sanar Farmaco • Manutenção do Sistema</title>' +
+            '<style>' +
+              '* { box-sizing: border-box; margin: 0; padding: 0; }' +
+              'body {' +
+                'font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;' +
+                'background: #0b1120;' +
+                'color: #e2e8f0;' +
+                'min-height: 100vh;' +
+                'display: flex;' +
+                'align-items: center;' +
+                'justify-content: center;' +
+                'padding: 20px;' +
+              '}' +
+              '.card {' +
+                'background: #1e293b;' +
+                'border: 1px solid #334155;' +
+                'border-radius: 20px;' +
+                'max-width: 500px;' +
+                'width: 100%;' +
+                'padding: 36px 28px;' +
+                'text-align: center;' +
+                'box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);' +
+              '}' +
+              '.icon {' +
+                'width: 76px;' +
+                'height: 76px;' +
+                'margin: 0 auto 20px;' +
+                'background: rgba(239, 68, 68, 0.12);' +
+                'border: 2px solid #ef4444;' +
+                'border-radius: 50%;' +
+                'display: flex;' +
+                'align-items: center;' +
+                'justify-content: center;' +
+                'font-size: 34px;' +
+              '}' +
+              '.badge {' +
+                'display: inline-block;' +
+                'background: #dc2626;' +
+                'color: #ffffff;' +
+                'font-size: 11px;' +
+                'font-weight: 800;' +
+                'padding: 4px 14px;' +
+                'border-radius: 9999px;' +
+                'letter-spacing: 0.08em;' +
+                'text-transform: uppercase;' +
+                'margin-bottom: 16px;' +
+              '}' +
+              'h1 {' +
+                'font-size: 22px;' +
+                'font-weight: 800;' +
+                'margin-bottom: 10px;' +
+                'color: #ffffff;' +
+              '}' +
+              'p.sub {' +
+                'color: #94a3b8;' +
+                'font-size: 14px;' +
+                'line-height: 1.5;' +
+                'margin-bottom: 24px;' +
+              '}' +
+              '.info-box {' +
+                'background: #0f172a;' +
+                'border: 1px solid #334155;' +
+                'border-radius: 14px;' +
+                'padding: 16px 20px;' +
+                'text-align: left;' +
+                'font-size: 13px;' +
+                'margin-bottom: 24px;' +
+              '}' +
+              '.info-row {' +
+                'display: flex;' +
+                'justify-content: space-between;' +
+                'align-items: center;' +
+                'padding: 8px 0;' +
+                'border-bottom: 1px solid #1e293b;' +
+              '}' +
+              '.info-row:last-child { border-bottom: none; }' +
+              '.info-label { color: #64748b; font-weight: 500; }' +
+              '.info-val { color: #f1f5f9; font-weight: 700; }' +
+              '.countdown {' +
+                'font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;' +
+                'font-size: 18px;' +
+                'font-weight: 700;' +
+                'color: #38bdf8;' +
+              '}' +
+              '.note {' +
+                'font-size: 12px;' +
+                'color: #64748b;' +
+                'line-height: 1.5;' +
+              '}' +
+            '</style>' +
+          '</head>' +
+          '<body>' +
+            '<div class="card">' +
+              '<div class="icon">🛑</div>' +
+              '<div class="badge">Serviço Temporariamente Indisponível</div>' +
+              '<h1>Sanar Farmaco Offline</h1>' +
+              '<p class="sub">A plataforma Sanar Farmaco está temporariamente desligada para manutenção programada dos servidores e sincronização de dados.</p>' +
+              '<div class="info-box">' +
+                '<div class="info-row">' +
+                  '<span class="info-label">Status:</span>' +
+                  '<span class="info-val" style="color:#ef4444;">● Fora do Ar (503)</span>' +
+                '</div>' +
+                '<div class="info-row">' +
+                  '<span class="info-label">Início da suspensão:</span>' +
+                  '<span class="info-val">Quarta, 28/10 às 13:25</span>' +
+                '</div>' +
+                '<div class="info-row">' +
+                  '<span class="info-label">Previsão de Retorno:</span>' +
+                  '<span class="info-val" style="color:#22c55e;">Quarta, 28/10 às 16:00</span>' +
+                '</div>' +
+                '<div class="info-row">' +
+                  '<span class="info-label">Tempo restante previsto:</span>' +
+                  '<span class="info-val countdown" id="blackout-timer">--:--:--</span>' +
+                '</div>' +
+              '</div>' +
+              '<p class="note">O sistema retornará ao ar automaticamente assim que a janela de manutenção for concluída. Nenhuma ação manual é necessária.</p>' +
+            '</div>' +
+          '</body>' +
+          '</html>';
+
+        try {
+          document.open();
+          document.write(html);
+          document.close();
+        } catch(e) {
+          document.documentElement.innerHTML = html;
+        }
+
+        var timerInterval = setInterval(function() {
+          var now = Date.now();
+          if (now >= BLACKOUT_END && !isPreview) {
+            clearInterval(timerInterval);
+            window.location.reload(true);
+            return;
+          }
+          var targetEnd = isPreview ? (Date.now() + 155 * 60000) : BLACKOUT_END;
+          var diff = Math.max(0, targetEnd - now);
+          var h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+          var m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+          var s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+          var timerEl = document.getElementById('blackout-timer');
+          if (timerEl) {
+            timerEl.textContent = h + ':' + m + ':' + s;
+          }
+        }, 1000);
+      }
+
+      // Checagem imediata no carregamento da página
+      if (isBlackout(Date.now())) {
+        triggerLockdown();
+        throw new Error('Blackout Mode Active');
+      }
+
+      // Loop de alta precisão (1 segundo) para desligar exatamente às 13:25:00 se a aba já estiver aberta
+      var monitorInterval = setInterval(function() {
+        if (isBlackout(Date.now())) {
+          clearInterval(monitorInterval);
+          triggerLockdown();
+        }
+      }, 1000);
+
+      // Desligar imediatamente caso o usuário desbloqueie o celular ou volte para a aba
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible' && isBlackout(Date.now())) {
+          clearInterval(monitorInterval);
+          triggerLockdown();
+        }
+      });
+      window.addEventListener('focus', function() {
+        if (isBlackout(Date.now())) {
+          clearInterval(monitorInterval);
+          triggerLockdown();
+        }
+      });
+
+      // Validação de horário oficial via cabeçalho HTTP do servidor (evita burla mudando a hora do celular)
+      try {
+        fetch(window.location.href, { method: 'HEAD', cache: 'no-store' })
+          .then(function(res) {
+            var dateHeader = res.headers.get('date');
+            if (dateHeader) {
+              var serverTime = new Date(dateHeader).getTime();
+              if (isBlackout(serverTime)) {
+                clearInterval(monitorInterval);
+                triggerLockdown();
+              }
+            }
+          })
+          .catch(function() {});
+      } catch(e) {}
+    })();
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" href="assets/medicine_bottle_3d.png">
