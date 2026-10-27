@@ -15,17 +15,11 @@ for (const file of rootFiles) {
   }
 }
 
-// Copy assets directory if exists
+// Copy assets directory recursively
 const assetsSrc = path.join(__dirname, 'assets');
 const assetsDest = path.join(wwwDir, 'assets');
 if (fs.existsSync(assetsSrc)) {
-  if (!fs.existsSync(assetsDest)) {
-    fs.mkdirSync(assetsDest, { recursive: true });
-  }
-  const files = fs.readdirSync(assetsSrc);
-  for (const file of files) {
-    fs.copyFileSync(path.join(assetsSrc, file), path.join(assetsDest, file));
-  }
+  fs.cpSync(assetsSrc, assetsDest, { recursive: true });
 }
 
 console.log('Successfully synced index.html and assets into www/ directory!');
