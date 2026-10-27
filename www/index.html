@@ -3753,55 +3753,100 @@
     }
 
     function addDrugToPrescription(drugId) {
-
       const drug = DRUGS_DB.find(d => d.id === drugId);
-
       if (!drug) return;
 
       if (drug.id === 'clorex_012') {
-
         document.getElementById('rx-enable-external').checked = true;
-
         toggleExternalPrescription();
-
         return;
-
       }
 
       const curCase = CASES_DB[currentCaseIndex];
+      const isProphylaxisCase = curCase.tags.includes('Prótese Valvar') || 
+                                curCase.tags.includes('Histórico de EI') || 
+                                curCase.title.toLowerCase().includes('profilaxia') ||
+                                curCase.hint.toLowerCase().includes('profilaxia') ||
+                                (curCase.explanation && curCase.explanation.toLowerCase().includes('profilaxia'));
 
+      const isElderlyCase = (curCase.age >= 65) || curCase.tags.includes('Idoso') || curCase.tags.includes('Idoso / Geriátrico');
+
+      let qty = drug.standardQty || "12 cp";
       let dosage = drug.standardDosage;
 
-      let line = `${drug.name} ${drug.strength} ----------------------------------- ${drug.standardQty}`;
-
-      if (drug.id === 'ibuprof_ped' && curCase.weight) {
-
-        dosage = `Tome ${curCase.weight} gotas de 6 em 6 horas durante 3 dias.`;
-
-      } else if (drug.id === 'paracet_ped' && curCase.weight) {
-
-        dosage = `Tome ${curCase.weight} gotas de 6 em 6 horas durante 3 dias.`;
-
-      } else if (drug.id === 'amoxi_ped' && curCase.weight) {
-
-        const ml = Math.round(curCase.weight * 0.33);
-
-        dosage = `Tome ${ml} mL de 8 em 8 horas durante 7 dias.`;
-
+      if (drug.id === 'clinda_300') {
+        if (isProphylaxisCase) {
+          qty = "2 cp";
+          dosage = "Tome 2 comprimidos (600mg) em dose única, 1 hora antes do procedimento cirúrgico.";
+        } else {
+          qty = "21 cp";
+          dosage = "Tome 1 comprimido a cada 8 horas durante 7 dias.";
+        }
+      } else if (drug.id === 'amoxi_500' || drug.id === 'amoxi_profilaxia') {
+        if (isProphylaxisCase && (curCase.correctDrugs.includes('amoxi_profilaxia') || curCase.correctDrugs.includes('amoxi_500'))) {
+          qty = "4 cp";
+          dosage = "Tome 4 comprimidos (2g) em dose única, 1 hora antes do procedimento cirúrgico.";
+        } else {
+          qty = "21 cp";
+          dosage = "Tome 1 comprimido a cada 8 horas durante 7 dias.";
+        }
+      } else if (drug.id === 'amoxi_clav') {
+        qty = "14 cp";
+        dosage = "Tome 1 comprimido a cada 12 horas durante 7 dias.";
+      } else if (drug.id === 'dexa_4') {
+        qty = "1 cp";
+        dosage = "Tome 1 comprimido em dose única, 1 hora antes do procedimento cirúrgico.";
+      } else if (drug.id === 'midazolam_15') {
+        qty = "1 cp";
+        dosage = "Tome 1 comprimido 40 minutos a 1 hora antes do procedimento cirúrgico (vir acompanhado).";
+      } else if (drug.id === 'lorazepam_1') {
+        qty = "1 cp";
+        dosage = "Tome 1 comprimido 1 hora antes do procedimento cirúrgico (vir acompanhado).";
+      } else if (drug.id === 'paracet_500') {
+        qty = "12 cp";
+        dosage = "Tome 1 comprimido a cada 6 horas durante 3 dias em caso de dor.";
+      } else if (drug.id === 'paracet_750') {
+        qty = "12 cp";
+        dosage = "Tome 1 comprimido a cada 6 horas durante 3 dias se dor.";
+      } else if (drug.id === 'nimesulida_100') {
+        qty = "6 cp";
+        dosage = "Tome 1 comprimido a cada 12 horas durante 3 dias.";
+      } else if (drug.id === 'codeina_15') {
+        qty = "12 cp";
+        dosage = "Tome 1 comprimido a cada 6 horas durante 3 dias (associado ao analgésico).";
+      } else if (drug.id === 'amoxi_ped') {
+        qty = "1 frasco";
+        if (curCase.weight) {
+          const ml = Math.round(curCase.weight * 0.33);
+          dosage = `Tome ${ml} mL a cada 8 horas durante 7 dias.`;
+        } else {
+          dosage = "Tome 8 mL a cada 8 horas durante 7 dias.";
+        }
+      } else if (drug.id === 'paracet_ped') {
+        qty = "1 frasco";
+        const drops = curCase.weight || 20;
+        dosage = `Tome ${drops} gotas a cada 6 horas durante 3 dias em caso de dor.`;
+      } else if (drug.id === 'ibuprof_ped') {
+        qty = "1 frasco";
+        const drops = curCase.weight || 20;
+        dosage = `Tome ${drops} gotas a cada 6 horas durante 3 dias.`;
+      } else if (drug.id === 'aciclovir_top') {
+        qty = "1 bisnaga";
+        dosage = "Aplicar topicamente sobre a lesão 5 vezes ao dia durante 5 dias.";
+      } else if (drug.id === 'fluconazol_100') {
+        qty = "1 cápsula";
+        dosage = "Tome 1 cápsula em dose única semanal durante 2 semanas.";
       }
 
+      const line = `${drug.name} ${drug.strength} ----------------------------------- ${qty}`;
+
       userPrescriptionItems.push({
-
         drugId: drug.id,
-
         drugLine: line,
-
         dosage: dosage
-
       });
 
       renderPrescriptionItems();
-
     }
 
     function updatePrescriptionItem(idx, field, value) {
@@ -4019,57 +4064,37 @@
       score += drugSelectionScore;
 
       let quantityAccurate = true;
-
       userPrescriptionItems.forEach(i => {
-
-        if (!i.drugLine.includes('cp') && !i.drugLine.includes('ml') && !i.drugLine.includes('frasco') && !i.drugLine.includes('bisnaga')) {
-
+        const line = i.drugLine.toLowerCase();
+        const hasUnit = ['cp', 'comprimido', 'cápsula', 'capsula', 'ml', 'frasco', 'bisnaga', 'cx', 'caixa', 'ampola', 'tubete', 'g', 'gota'].some(u => line.includes(u));
+        if (!hasUnit) {
           quantityAccurate = false;
-
         }
-
       });
 
       if (quantityAccurate && userPrescriptionItems.length > 0) {
-
         score += 3;
-
         positiveFeedbacks.push('Quantidades totais indicadas no formato da receita (cp / ml / frascos).');
-
       } else {
-
         score += 1.5;
-
         improvementFeedbacks.push('Sempre explicite a quantidade total na linha do medicamento (ex: 21cp, 12cp, 1 Frasco).');
-
       }
 
       let posologyAccurate = true;
-
       userPrescriptionItems.forEach(i => {
-
         const d = i.dosage.toLowerCase();
-
-        if (!d.includes('hora') && !d.includes('dia') && !d.includes('antes')) {
-
+        const hasValidDirective = ['hora', 'dia', 'antes', 'vez', 'minuto', 'tome', 'tomar', 'aplicar', 'bochech', 'gota', 'se dor', 'dose'].some(w => d.includes(w));
+        if (!hasValidDirective || d.trim().length < 8) {
           posologyAccurate = false;
-
         }
-
       });
 
       if (posologyAccurate && userPrescriptionItems.length > 0) {
-
         score += 2;
-
         positiveFeedbacks.push('Posologia e intervalos de administração descritos com precisão.');
-
       } else {
-
         score += 1;
-
-        improvementFeedbacks.push('A posologia deve conter o intervalo exato (ex: de 8 em 8 horas) e a duração do tratamento (ex: durante 7 dias).');
-
+        improvementFeedbacks.push('A posologia deve conter o intervalo de administração (ex: de 8 em 8 horas) e a duração do tratamento.');
       }
 
       if (c.requireExternal) {
@@ -4173,30 +4198,31 @@
         </div>
 
         <!-- FEEDBACK GRIDS -->
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-bold">
-
-          <div class="bg-emerald-50/70 p-3.5 rounded-2xl border-2 border-emerald-200 space-y-1">
-
-            <span class="text-emerald-900 font-black flex items-center gap-1 text-[11px] uppercase">Itens contemplados:</span>
-
-            ${positiveFeedbacks.length > 0 ? positiveFeedbacks.map(f => `<div class="text-emerald-800 font-semibold pl-3 relative before:content-['•'] before:absolute before:left-0">${f}</div>`).join('') : '<div class="text-slate-400">Nenhum acerto.</div>'}
-
+        ${(fatalErrors.length === 0 && improvementFeedbacks.length === 0) ? `
+          <div class="bg-emerald-50/80 p-4 rounded-2xl border-2 border-emerald-300 space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center font-black text-xs">✓</span>
+              <span class="text-emerald-900 font-black text-xs sm:text-sm uppercase tracking-wide">Prescrição 100% Correta</span>
+            </div>
+            <div class="text-xs font-semibold text-emerald-800 space-y-1 pl-8">
+              ${positiveFeedbacks.map(f => `<div class="relative before:content-['•'] before:absolute before:-left-3">${f}</div>`).join('')}
+              <div class="pt-1 text-emerald-900 font-bold">Nenhuma inadequação identificada. Todos os critérios farmacológicos e posológicos foram atendidos com sucesso.</div>
+            </div>
           </div>
+        ` : `
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-bold">
+            <div class="bg-emerald-50/70 p-3.5 rounded-2xl border-2 border-emerald-200 space-y-1">
+              <span class="text-emerald-900 font-black flex items-center gap-1 text-[11px] uppercase">Itens contemplados:</span>
+              ${positiveFeedbacks.length > 0 ? positiveFeedbacks.map(f => `<div class="text-emerald-800 font-semibold pl-3 relative before:content-['•'] before:absolute before:left-0">${f}</div>`).join('') : '<div class="text-slate-400">Nenhum acerto.</div>'}
+            </div>
 
-          <div class="bg-rose-50/70 p-3.5 rounded-2xl border-2 border-rose-200 space-y-1">
-
-            <span class="text-rose-900 font-black flex items-center gap-1 text-[11px] uppercase">Inadequações identificadas:</span>
-
-            ${fatalErrors.length > 0 ? fatalErrors.map(e => `<div class="text-red-700 font-black pl-3 relative before:content-['•'] before:absolute before:left-0">${e}</div>`).join('') : ''}
-
-            ${improvementFeedbacks.length > 0 ? improvementFeedbacks.map(f => `<div class="text-amber-800 font-semibold pl-3 relative before:content-['•'] before:absolute before:left-0">${f}</div>`).join('') : ''}
-
-            ${fatalErrors.length === 0 && improvementFeedbacks.length === 0 ? '<div class="text-emerald-800 font-bold">Parabéns! Prescrição 100% correta.</div>' : ''}
-
+            <div class="bg-rose-50/70 p-3.5 rounded-2xl border-2 border-rose-200 space-y-1">
+              <span class="text-rose-900 font-black flex items-center gap-1 text-[11px] uppercase">Inadequações identificadas:</span>
+              ${fatalErrors.length > 0 ? fatalErrors.map(e => `<div class="text-red-700 font-black pl-3 relative before:content-['•'] before:absolute before:left-0">${e}</div>`).join('') : ''}
+              ${improvementFeedbacks.length > 0 ? improvementFeedbacks.map(f => `<div class="text-amber-800 font-semibold pl-3 relative before:content-['•'] before:absolute before:left-0">${f}</div>`).join('') : ''}
+            </div>
           </div>
-
-        </div>
+        `}
 
         <!-- OFFICIAL GABARITO DROPDOWN -->
 
