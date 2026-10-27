@@ -712,7 +712,7 @@
 
       <!-- CASE PILLS STRIP (STANDARD QUICK SELECTOR) -->
 
-      <div id="path-pills-strip" class="flex gap-2 overflow-x-auto pb-2 custom-scroll">
+      <div id="path-pills-strip" class="flex items-center gap-2.5 overflow-x-auto py-3 px-2 custom-scroll">
 
         <!-- Rendered dynamically via JS -->
 
@@ -1270,7 +1270,7 @@
 
       <!-- CATEGORY FILTER CHIPS -->
 
-      <div class="flex items-center gap-2 overflow-x-auto pb-1 custom-scroll">
+      <div class="flex items-center gap-2 overflow-x-auto py-2 px-1 custom-scroll">
 
         <button onclick="filterQuizCategory('all')" id="q-cat-all" class="btn-3d px-3.5 py-1.5 rounded-xl text-xs font-black btn-duo-amber shrink-0">Todos os Desafios</button>
 
@@ -1460,7 +1460,7 @@
       </div>
 
       <!-- QUESTION QUICK JUMP STRIP -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-1.5 custom-scroll" id="provas-nav-pills">
+      <div class="flex items-center gap-2 overflow-x-auto py-2.5 px-1 custom-scroll" id="provas-nav-pills">
         <!-- Generated dynamically -->
       </div>
 
@@ -3438,13 +3438,13 @@
 
         if (isCurrent) {
 
-          btnClass += " ring-2 ring-duo-blue ring-offset-2 font-black";
+          btnClass += " ring-2 ring-duo-blue ring-offset-2 border-duo-blue font-black";
 
         }
 
         return `
 
-          <button onclick="loadCase(${idx}, true)" class="btn-3d px-3.5 py-2 rounded-2xl text-xs font-black whitespace-nowrap transition flex items-center gap-1.5 ${btnClass}">
+          <button onclick="loadCase(${idx}, true)" class="btn-3d px-3.5 py-2 rounded-2xl text-xs font-black whitespace-nowrap transition flex items-center gap-1.5 shrink-0 ${btnClass}">
 
             <span>${icon}</span>
 
