@@ -670,6 +670,11 @@
 
         <div class="flex items-center gap-2">
 
+          <button onclick="openUnioesteProtocolsModal()" class="btn-3d px-3.5 py-2 rounded-xl text-xs font-black flex items-center gap-1.5 btn-duo-purple text-white shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <span>Protocolos UNIOESTE</span>
+          </button>
+
           <button onclick="togglePathView()" id="btn-toggle-view" class="btn-3d px-3.5 py-2 rounded-xl text-xs font-black flex items-center gap-1.5 btn-duo-white">
 
             <span id="view-icon" class="inline-flex"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></span>
@@ -1424,7 +1429,7 @@
             Prova de Farmacologia e Terapêutica
           </h2>
           <p class="text-white/90 text-sm font-semibold leading-relaxed">
-            Caderno oficial de questões do 3º Bimestre (aplicada em 22/10/2025). Responda cada questão interativamente e veja o <strong>gabarito oficial comentado</strong> acompanhado das <strong>fotos originais dos cadernos nota 10</strong>.
+            Caderno oficial de questões do 3º Bimestre (contendo a Prova Oficial 2023, Prova 2025 do Prof. Ediuilson Ilo Lisbôa e Casos Clínicos UNIOESTE). Responda cada questão interativamente, veja o <strong>gabarito oficial comentado</strong> e consulte o <strong>Caderno de Protocolos</strong>.
           </p>
         </div>
 
@@ -1437,12 +1442,13 @@
             </div>
             <div class="bg-white/20 px-3.5 py-2 rounded-xl flex items-center gap-2">
               <span class="inline-flex items-center gap-1"><svg class="w-3.5 h-3.5 text-purple-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Respondidas:</span>
-              <span id="prova-answered-display" class="text-purple-200">0 / 8 Questões</span>
+              <span id="prova-answered-display" class="text-purple-200">0 / 20 Questões</span>
             </div>
           </div>
           <button onclick="restartProva()" class="btn-3d px-3.5 py-1.5 rounded-xl text-xs font-black bg-white text-slate-800 shadow-sm hover:bg-purple-50">
             <span class="inline-flex items-center gap-1.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Reiniciar Prova</span>
           </button>
+          </div>
         </div>
       </div>
 
@@ -2092,6 +2098,90 @@
         rxLine: 'Uso Externo\n1- Aciclovir 50mg/g creme ----------------------------------------------- 1 Bisnaga (10g)\n   Aplicar na lesão 5 vezes ao dia de 4 em 4 horas durante o dia por 7 dias.'
 
       }
+      ,
+      {
+        id: 'omcilon_orabase',
+        name: 'Triancinolona Acetonida (Omcilon-A em Orabase)',
+        strength: '1 mg/g (0,1%)',
+        class: 'corticoide',
+        classesText: 'Corticoide Tópico em Orabase',
+        profiles: ['higido', 'diabetico', 'protese', 'cardiopata', 'idoso', 'gestante'],
+        indication: 'Tratamento tópico de lesões inflamatórias e ulceradas da mucosa oral: Estomatite Aftosa Recorrente (aftas), líquen plano erosivo e úlceras traumáticas.',
+        contraindications: 'Infecções virais ativas (herpes simples), fúngicas (candidíase oral) ou bacterianas ativas. Não aplicar sobre feridas cirúrgicas abertas.',
+        standardQty: '1 bisnaga (10g)',
+        standardDosage: 'Aplicar uma pequena quantidade sem esfregar sobre a lesão 2 a 3 vezes ao dia, após as refeições e ao deitar, até a cicatrização.',
+        altDosage: 'Não mastigar ou ingerir alimentos logo após a aplicação na mucosa.'
+      },
+      {
+        id: 'prednisona_5',
+        name: 'Prednisona',
+        strength: '5 mg',
+        class: 'corticoide',
+        classesText: 'Glicocorticoide Oral Sistêmico',
+        profiles: ['higido', 'protese', 'cardiopata'],
+        indication: 'Quadros graves e recidivantes de estomatite aftosa com múltiplas ulcerações, aftas gigantes (Sutton) e líquen plano bolhoso refratário.',
+        contraindications: 'Infecções bacterianas ou fúngicas sistêmicas não controladas, diabetes descompensada, úlcera péptica ativa e hipertensão severa.',
+        dangerBadge: 'Uso em Esquema Regressivo',
+        standardQty: '20 cp',
+        standardDosage: 'Esquema regressivo: 3 cp (15mg) às 8h nos dias 1 a 3; 2 cp (10mg) nos dias 4 e 5; 1 cp (5mg) no dia 6.',
+        altDosage: 'Administrar sempre pela manhã com alimentos para acompanhar o ritmo circadiano do cortisol.'
+      },
+      {
+        id: 'paracetamol_codeina',
+        name: 'Paracetamol + Fosfato de Codeína',
+        strength: '500 mg + 30 mg',
+        class: 'analgesico',
+        classesText: 'Analgésico Não Opioide + Opioide Fraco',
+        profiles: ['higido', 'diabetico', 'protese', 'cardiopata', 'idoso'],
+        indication: 'Dor aguda de intensidade moderada a grave refratária a analgésicos comuns (pulpite irreversível, pós-operatório de osteotomias extensas).',
+        contraindications: 'Crianças menores de 12 anos, gestantes, lactantes, insuficiência respiratória grave, asma brônquica aguda e uso concomitante de álcool.',
+        dangerBadge: 'Receituário de Controle Especial (C1)',
+        standardQty: '12 cp',
+        standardDosage: 'Tome 1 comprimido a cada 6 horas durante até 3 dias enquanto persistir a dor severa.',
+        altDosage: 'Pode causar sonolência, vertigem e constipação intestinal.'
+      },
+      {
+        id: 'diazepam_10',
+        name: 'Diazepam',
+        strength: '10 mg (ou 5 mg)',
+        class: 'ansiolitico',
+        classesText: 'Benzodiazepínico Sedativo / Miorrelaxante',
+        profiles: ['higido', 'diabetico', 'cardiopata'],
+        indication: 'Sedação consciente pré-operatória em adultos jovens ansiosos; alívio de espasmo muscular agudo e trismo associado a disfunções da ATM.',
+        contraindications: 'Idosos frágeis (risco de sedação prolongada - preferir Lorazepam 1mg), miastenia gravis, glaucoma de ângulo fechado e apneia do sono.',
+        dangerBadge: 'Receituário Azul (B1)',
+        standardQty: '1 cp',
+        standardDosage: 'Tome 1 comprimido (5mg a 10mg) por via oral 1 hora antes do atendimento cirúrgico.',
+        altDosage: 'Desordens da ATM: 5mg uma vez ao dia à noite por 3 a 5 dias.'
+      },
+      {
+        id: 'nistatina_oral',
+        name: 'Nistatina Suspensão Oral',
+        strength: '100.000 UI / mL',
+        class: 'antifungico',
+        classesText: 'Antifúngico Poliénico Tópico Oral',
+        profiles: ['higido', 'diabetico', 'protese', 'cardiopata', 'idoso', 'gestante'],
+        indication: 'Primeira linha para candidíase bucal (pseudomembranosa e eritematosa), estomatite protética e queilite angular associada a fungos.',
+        contraindications: 'Hipersensibilidade conhecida à nistatina. Ineficaz para infecções fúngicas sistêmicas profundas.',
+        standardQty: '1 frasco (50 mL)',
+        standardDosage: 'Bochechar 4 a 6 mL da suspensão por 2 minutos e deglutir em seguida, 4 vezes ao dia (a cada 6 horas) durante 14 dias.',
+        altDosage: 'Usuários de prótese: retirar a prótese antes do bochecho e higienizá-la separadamente.'
+      },
+      {
+        id: 'cetorolaco_inj',
+        name: 'Trometamol Cetorolaco Injetável',
+        strength: '30 mg / mL',
+        class: 'antiinflamatorio',
+        classesText: 'AINE Injetável de Alta Potência Analgésica',
+        profiles: ['higido', 'diabetico', 'protese'],
+        indication: 'Controle rápido de dor aguda intensa em urgências odontológicas de consultório e procedimentos cirúrgicos cruentos.',
+        contraindications: 'Insuficiência renal, úlcera péptica ativa, histórico de hemorragia digestiva, distúrbios hemostáticos e uso com outros AINEs.',
+        dangerBadge: 'Uso Injetável Ambulatorial',
+        standardQty: '1 ampola (1 mL)',
+        standardDosage: 'Administrar 1 ampola (30mg) por via intramuscular profunda (IM) em dose única imediata.',
+        altDosage: 'Não exceder a dose única recomendada nem associar com outros anti-inflamatórios.'
+      }
+
 
     ];
 
@@ -5964,6 +6054,524 @@
           }
         ]
       }
+      ,
+      {
+        id: 9,
+        title: "Questão 9 – Exodontia de Sisos Inclusos: Pré-Operatório (Prova 2023)",
+        totalPoints: 10,
+        theme: "Cirurgia de Terceiros Molares Inclusos e Retidos",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 1 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "Paciente A. S., sexo masculino, 18 anos, hígido, sem doenças sistêmicas ou alergias relatadas na anamnese. Comparece para exodontia dos elementos 38 e 48 inclusos e impactados, com planejamento de retalho mucoperiosteal e osteotomia expressiva. Indique a conduta medicamentosa pré-operatória profilática para o controle de edema e trismo pós-operatórios.",
+        subitems: [
+          {
+            id: "9a",
+            label: "a) Prescrição pré-operatória para controle de edema e trismo cirúrgico",
+            points: 10,
+            options: [
+              {
+                letter: "A",
+                text: "Prednisona 20mg ----- 1 comprimido. Tomar 1 comprimido por via oral 24 horas antes e repetir logo ao acordar no dia do procedimento.",
+                correct: false,
+                feedback: "A prednisona necessita de metabolização hepática ativa e doses fracionadas repetidas com 24h de antecedência não constituem o regime cirúrgico padrão preconizado pela disciplina, que prefere dexametasona 4mg 1h antes."
+              },
+              {
+                letter: "B",
+                text: "Nimesulida 100mg ----- 1 comprimido. Tomar 1 comprimido por via oral 1 hora antes da intervenção cirúrgica.",
+                correct: false,
+                feedback: "Embora a nimesulida seja um AINE comum no pós-operatório, os AINEs não possuem a potência anti-edematosa e o bloqueio da fosfolipase A2 dos glicocorticoides em cirurgias com ostectomia mandibular."
+              },
+              {
+                letter: "C",
+                text: "Dexametasona 4mg ----- 1 comprimido. Tomar 1 comprimido por via oral 1 hora antes do procedimento cirúrgico.",
+                correct: true,
+                feedback: "Gabarito oficial: conforme o protocolo do Prof. Ediuilson Lisbôa e da UNIOESTE para cirurgias bucais de maior complexidade, administra-se 4mg de Dexametasona (ou Betametasona) em dose única, 60 minutos antes do procedimento. Essa dose única preemptiva inibe a fosfolipase A2, bloqueando a cascata inflamatória antes do trauma tecidual e reduzindo drasticamente o edema, a dor e o trismo pós-operatório."
+              },
+              {
+                letter: "D",
+                text: "Amoxicilina 500mg ----- 2 comprimidos (1g). Tomar 2 comprimidos por via oral 1 hora antes como profilaxia antibiótica preventiva.",
+                correct: false,
+                feedback: "O paciente é jovem, hígido e não apresenta infecção ativa pericoronária ou risco de endocardite bacteriana. A prescrição profilática rotineira de antibiótico sistêmico em terceiros molares estéreis não é indicada pela disciplina."
+              }
+            ],
+            handwrittenAnswer: "Dexametasona 4mg - 1 comprimido. Tomar 1 comprimido por via oral 1 hora antes do procedimento cirúrgico para prevenção e diminuição de edema, trismo e dor pós-operatória."
+          }
+        ]
+      },
+      {
+        id: 10,
+        title: "Questão 10 – Ansiedade Pré-Operatória em Cirurgia Oral (Prova 2023)",
+        totalPoints: 10,
+        theme: "Sedação Consciente Medicamentosa",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 2 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "No caso do paciente da Questão 9 (jovem de 18 anos, hígido, submetido à cirurgia de terceiros molares inclusos), durante a consulta de anamnese constatou-se que o mesmo encontra-se extremamente ansioso, taquicárdico e com fobia do procedimento odontológico. Indique a conduta medicamentosa para o controle da ansiedade.",
+        subitems: [
+          {
+            id: "10a",
+            label: "a) Medicamento, dosagem e posologia para controle da ansiedade no paciente adulto jovem",
+            points: 10,
+            options: [
+              {
+                letter: "A",
+                text: "Clonazepam 2,5mg/mL gotas ----- 1 frasco. Administrar 30 gotas sublingual 15 minutos antes da cirurgia.",
+                correct: false,
+                feedback: "O clonazepam possui meia-vida muito longa (20 a 50 horas), provocando sonolência excessiva e sedação residual prolongada desnecessária para intervenções ambulatoriais."
+              },
+              {
+                letter: "B",
+                text: "Midazolam 15mg (ou 7,5mg) ----- 1 comprimido. Tomar 1 comprimido por via oral de 45 a 60 minutos antes do procedimento.",
+                correct: true,
+                feedback: "Gabarito oficial: o protocolo da UNIOESTE (Prof. Ediuilson Lisbôa) preconiza Midazolam 7,5mg a 15mg (ou Diazepam 5mg a 10mg) administrado 45 a 60 minutos antes do atendimento. O midazolam tem início de ação rápido, pico plasmático em ~45 minutos, curta duração de ação e excelente efeito ansiolítico e amnésico anterógrado, sendo ideal para adultos jovens."
+              },
+              {
+                letter: "C",
+                text: "Prometazina 25mg ----- 1 comprimido. Tomar 1 comprimido 2 horas antes da cirurgia.",
+                correct: false,
+                feedback: "A prometazina é um anti-histamínico de primeira geração com acentuado efeito anticolinérgico e sedação inconsistente, não sendo o fármaco de primeira escolha para sedação odontológica."
+              },
+              {
+                letter: "D",
+                text: "Paracetamol 750mg associado a Cafeína 30mg ----- 1 comprimido 30 minutos antes do ato operatório.",
+                correct: false,
+                feedback: "Paracetamol não possui propriedades ansiolíticas ou sedativas no sistema nervoso central; a cafeína agravaria ainda mais o quadro de taquicardia e agitação."
+              }
+            ],
+            handwrittenAnswer: "Midazolam 15mg (ou 7,5mg) - 1 comprimido. Tomar 1 comprimido por via oral de 45 a 60 minutos antes do procedimento cirúrgico, acompanhado por um responsável."
+          }
+        ]
+      },
+      {
+        id: 11,
+        title: "Questão 11 – Abscesso com Drenagem Extraoral (Prova 2023)",
+        totalPoints: 15,
+        theme: "Infecções Odontogênicas Graves / Celulite Facial",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 3 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "Paciente P. A., sexo masculino, 32 anos, apresenta-se com abscesso periodontal avançado no dente 36, já drenado por incisão extraoral na pele da região submandibular. Ao exame apresenta vermelhidão cutânea, inchaço acentuado e febre (38,2ºC). Não há envolvimento ou ferida cirúrgica intraoral aberta. Indique o receituário pós-operatório completo.",
+        subitems: [
+          {
+            id: "11a",
+            label: "a) Antibioticoterapia de escolha e manejo analgésico adequado",
+            points: 15,
+            options: [
+              {
+                letter: "A",
+                text: "Uso Interno: 1. Amoxicilina 500mg ----- 21 comprimidos. Tomar 1 comprimido a cada 8 horas durante 7 dias.<br>2. Dexametasona 4mg ----- 3 comprimidos. Tomar 1 comprimido ao dia durante 3 dias.<br>Uso Externo: Digluconato de clorexidina 0,12% ----- 100ml. Bochechar 3x ao dia.",
+                correct: false,
+                feedback: "A dexametasona é contraindicada em quadros infecciosos agudos não resolvidos pelo risco de imunossupressão grave e disseminação septicêmica pela fáscia. A clorexidina bucal é inútil pois não houve intervenção intraoral."
+              },
+              {
+                letter: "B",
+                text: "Uso Interno: 1. Nimesulida 100mg ----- 6 comprimidos. Tomar 1 comprimido a cada 12 horas por 3 dias.<br>2. Dipirona 500mg ----- 10 comprimidos. Tomar se dor.<br>Sem necessidade de antibiótico sistêmico uma vez que o abscesso foi drenado mecanicamente.",
+                correct: false,
+                feedback: "A presença de sinais cardinais sistêmicos de disseminação (febre de 38,2ºC, celulite invasiva e vermelhidão facial extensa) torna mandatória a antibioticoterapia sistêmica de espectro potencializado."
+              },
+              {
+                letter: "C",
+                text: "Uso Interno: 1. Ciprofloxacino 500mg ----- 14 comprimidos. Tomar 1 comprimido a cada 12 horas por 7 dias.<br>2. Cetoprofeno 100mg ----- 6 comprimidos. Tomar 1 comprimido a cada 12 horas.",
+                correct: false,
+                feedback: "O ciprofloxacino tem baixa eficácia contra bactérias anaeróbias orais; AINEs não devem ser prescritos no auge de infecções bacterianas invasivas com febre e drenagem ativa."
+              },
+              {
+                letter: "D",
+                text: "Uso Interno: 1. Amoxicilina 500mg + Clavulanato de potássio 125mg ----- 21 comprimidos. Tomar 1 comprimido a cada 8 horas durante 7 dias.<br>2. Paracetamol 750mg ----- 12 comprimidos. Tomar 1 comprimido a cada 6 horas por 3 dias se dor ou febre.",
+                correct: true,
+                feedback: "Gabarito oficial: em infecções graves com drenagem extraoral, celulite e febre, utiliza-se a associação de Amoxicilina com Clavulanato de potássio (500/125mg) 8/8h por 7 dias, cobrindo cepas produtoras de beta-lactamase. O paracetamol 750mg atua na dor e na hipertermia. Detalhe crucial ensinado em aula: NÃO se prescreve corticoide nem AINE forte nesta fase aguda para não suprimir a resposta imunológica; e NÃO se prescreve Clorexidina tópica oral porque a incisão foi estritamente na pele extraoral!"
+              }
+            ],
+            handwrittenAnswer: "Uso Interno: 1. Amoxicilina 500mg + Clavulanato de potássio 125mg ----- 21 cp. Tomar 1 comprimido a cada 8 horas durante 7 dias. 2. Paracetamol 750mg ----- 12 cp. Tomar 1 comprimido a cada 6 horas por 3 dias. Observação: Evitar AINEs/corticoides na infecção aguda e não usar clorexidina bucal (drenagem extraoral)."
+          }
+        ]
+      },
+      {
+        id: 12,
+        title: "Questão 12 – Medicação Injetável para Dor Aguda Intensa (Prova 2023)",
+        totalPoints: 10,
+        theme: "Terapêutica Injetável de Urgência",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 4 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "Paciente de 25 anos, sexo feminino, sem alterações sistêmicas ou alergias, chega ao consultório odontológico em crise de dor aguda excruciante (escala visual 10/10), necessitando de medicação anti-inflamatória não esteroidal injetável de ação rápida para alívio imediato e viabilização do atendimento clínico. Indique o AINE injetável de escolha.",
+        subitems: [
+          {
+            "id": "12a",
+            "label": "a) AINE injetável de escolha para analgesia potente imediata em consultório",
+            "points": 10,
+            "options": [
+              {
+                letter: "A",
+                text: "Trometamol Cetorolaco 30mg/mL (ampola 1mL) administrado por via intramuscular profunda (IM) ou intravenosa lenta (IV).",
+                correct: true,
+                feedback: "Gabarito oficial: o trometamol cetorolaco (30mg IM/IV) é o principal AINE injetável utilizado para alívio rápido de dor aguda moderada a grave em ambiente ambulatorial e odontológico de urgência, possuindo eficácia analgésica comparável a doses baixas de opioides. Outras alternativas aceitas são o Cetoprofeno 100mg IM ou Tenoxicam 20mg a 40mg IM/IV."
+              },
+              {
+                letter: "B",
+                text: "Dipirona 500mg/mL injetável (2mL) por via intramuscular profunda em dose única.",
+                correct: false,
+                feedback: "Embora a dipirona seja um excelente analgésico antipirético injetável, o enunciado solicita expressamente um AINE (anti-inflamatório não esteroidal)."
+              },
+              {
+                letter: "C",
+                text: "Morfina 10mg/mL administrada por via intravenosa direta sem diluição.",
+                correct: false,
+                feedback: "Morfina é um opioide forte de uso hospitalar com alto risco de depressão respiratória e dependência, não sendo indicada em ambiente ambulatorial de rotina."
+              },
+              {
+                letter: "D",
+                text: "Hidrocortisona 500mg injetável por via intramuscular.",
+                correct: false,
+                feedback: "A hidrocortisona é um corticoide de reposição sistêmica e emergências anafiláticas, não um AINE analgésico."
+              }
+            ],
+            handwrittenAnswer: "Trometamol Cetorolaco 30mg injetável por via intramuscular (IM) ou Cetoprofeno 100mg IM / Tenoxicam 20mg a 40mg IM."
+          }
+        ]
+      },
+      {
+        id: 13,
+        title: "Questão 13 – Pulpite Irreversível com Sintomas Graves (Prova 2023)",
+        totalPoints: 15,
+        theme: "Conduta Farmacológica em Endodontia de Urgência",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 5 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "Paciente R.N.S., feminino, relata restauração recente no dente 21 que não para de doer mesmo em uso contínuo de AINE comum prescrito previamente. Diagnóstico confirmado de pulpite irreversível sintomática. O cirurgião-dentista não dispõe de tempo/condições no momento para a intervenção operatória imediata e precisa prescrever medicamentos sistêmicos para controle emergencial dos sintomas até o atendimento.",
+        subitems: [
+          {
+            "id": "13a",
+            "label": "a) Medicamentos de escolha para atenuação dos sintomas na pulpite aguda irreversível",
+            "points": 15,
+            "options": [
+              {
+                letter: "A",
+                text: "Uso Interno: 1. Amoxicilina 500mg ----- 21 comprimidos. Tomar 1 comprimido a cada 8 horas durante 7 dias.<br>2. Ibuprofeno 600mg ----- 9 comprimidos. Tomar 1 comprimido a cada 8 horas.",
+                correct: false,
+                feedback: "A pulpite é uma inflamação pulpar estéril/química em fase inicial; não há infecção periapical invasiva que justifique antibiótico. O paciente já referiu falha prévia com AINE comum."
+              },
+              {
+                letter: "B",
+                text: "Uso Interno: 1. Nimesulida 100mg ----- 6 comprimidos. Tomar 1 comprimido de 12 em 12 horas.<br>2. Diclofenaco de Potássio 50mg ----- 9 comprimidos. Tomar de 8 em 8 horas.",
+                correct: false,
+                feedback: "A associação concomitante de dois AINEs (nimesulida e diclofenaco) duplica a toxicidade gástrica e renal sem benefício analgésico."
+              },
+              {
+                letter: "C",
+                text: "Uso Interno: 1. Dexametasona 4mg ----- 1 comprimido. Tomar 1 comprimido em dose única agora.<br>2. Paracetamol 500mg + Fosfato de Codeína 30mg ----- 8 comprimidos. Tomar 1 comprimido a cada 6 horas enquanto persistir a dor severa.",
+                correct: true,
+                feedback: "Gabarito oficial: na pulpite irreversível sintomática, a polpa confinada na câmara pulpar rígida gera dor excruciante mediada por edema intrapulpar e hipertensão tecidual. Um corticoide potente em dose única (Dexametasona 4mg) atua diretamente reduzindo a pressão e o edema pulpar, enquanto um analgésico opioide de ação central (Codeína 30mg associada ao Paracetamol 500mg ou Tramadol) bloqueia a via nociceptiva refratária aos AINEs simples."
+              },
+              {
+                letter: "D",
+                text: "Uso Interno: 1. Clindamicina 300mg ----- 21 comprimidos. Tomar 1 comprimido a cada 8 horas.<br>2. Paracetamol 750mg ----- 1 comprimido a cada 6 horas.",
+                correct: false,
+                feedback: "Não há indicação de clindamicina para pulpite estéril isolada sem manifestação infecciosa periapical ou disseminação extrarradicular."
+              }
+            ],
+            handwrittenAnswer: "Dexametasona 4mg em dose única imediata para redução da pressão e inflamação pulpar, associada a Paracetamol 500mg + Codeína 30mg (ou Tramadol / Dipirona 1g) a cada 6 horas se dor intensa refratária."
+          }
+        ]
+      },
+      {
+        id: 14,
+        title: "Questão 14 – Celulite Facial Invasiva em Odontopediatria (Prova 2023)",
+        totalPoints: 15,
+        theme: "Farmacologia Pediátrica em Infecções Graves",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 6 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "Paciente F. I. L., 8 anos de idade, 18 kg de peso corporal, comparece com dente 36 apresentando necrose pulpar associada a infecção invasiva difusa (celulite facial com edema sublingual, dor, prostração e febre). Após a abertura e drenagem clínica no consultório, prescreva a medicação pós-operatória completa calculada por peso.",
+        subitems: [
+          {
+            "id": "14a",
+            "label": "a) Antibioticoterapia suspensão e analgesia calculadas pelo peso da criança",
+            "points": 15,
+            "options": [
+              {
+                letter: "A",
+                text: "Uso Interno: 1. Amoxicilina 500mg comprimidos ----- 21 comprimidos. Tomar 1 comprimido a cada 8 horas durante 7 dias.<br>2. Nimesulida 100mg ----- 1 comprimido ao dia.",
+                correct: false,
+                feedback: "Comprimidos para adultos e nimesulida são contraindicados para uma criança de 8 anos pesando apenas 18 kg. Nimesulida é contraindicada em menores de 12 anos pelo risco de hepatotoxicidade fulminante."
+              },
+              {
+                letter: "B",
+                text: "Uso Interno: 1. Amoxicilina 250mg/5mL suspensão oral ----- 1 frasco. Administrar 6 mL a cada 8 horas durante 7 dias.<br>2. Paracetamol 200mg/mL gotas ----- 1 frasco. Administrar 18 gotas a cada 6 horas durante 3 dias se dor ou febre.",
+                correct: true,
+                feedback: "Gabarito oficial: cálculo da disciplina: 1) Dose pediátrica de Amoxicilina: 50 mg/kg/dia dividida a cada 8 horas. Para 18 kg: 18 x 50 = 900 mg/dia ÷ 3 tomadas = 300 mg/dose. Como a concentração é 250 mg / 5 mL (50 mg/mL), 300 mg correspondem a exatamente 6 mL a cada 8 horas. 2) Paracetamol gotas: 1 gota por kg de peso (18 kg = 18 gotas) a cada 6 horas por até 3 dias."
+              },
+              {
+                letter: "C",
+                text: "Uso Interno: 1. Ciprofloxacino 250mg suspensão ----- 1 frasco. Administrar 5 mL a cada 12 horas.<br>2. Dipirona gotas 500mg/mL ----- Administrar 40 gotas a cada 6 horas.",
+                correct: false,
+                feedback: "Quinolonas como o ciprofloxacino não são recomendadas em crianças pelo risco de artropatias nas cartilagens de crescimento; 40 gotas de dipirona excede a dose pediátrica de 18 kg."
+              },
+              {
+                letter: "D",
+                text: "Uso Interno: 1. Azitromicina 200mg/5mL ----- 1 frasco. Administrar 10 mL ao dia por 3 dias.<br>2. Dexametasona gotas ----- 20 gotas a cada 8 horas.",
+                correct: false,
+                feedback: "A azitromicina em regime curto não é primeira escolha para celulites odontogênicas com envolvimento sublingual; corticoides contínuos não devem ser associados a celulite aguda invasiva."
+              }
+            ],
+            handwrittenAnswer: "Uso Interno: 1. Amoxicilina 250mg/5mL suspensão oral ----- 1 frasco. Administrar 6 mL (300mg) a cada 8 horas durante 7 dias. 2. Paracetamol 200mg/mL gotas ----- 1 frasco. Administrar 18 gotas (1 gota/kg) a cada 6 horas por 3 dias se dor ou febre."
+          }
+        ]
+      },
+      {
+        id: 15,
+        title: "Questão 15 – Endocardite Infecciosa em Alérgico à Penicilina (Prova 2023)",
+        totalPoints: 15,
+        theme: "Profilaxia da Endocardite Bacteriana AHA",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 7 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "Paciente M. N., idosa de 71 anos, necessita de exodontia múltipla dos elementos 41, 42, 31, 32 e 33 com periodontite avançada e mobilidade acentuada. Na anamnese, relata histórico prévio documentado de endocardite bacteriana e ALERGIA severa comprovada a penicilinas (urticária e edema de glote). Indique o esquema profilático e o receituário pós-operatório completo.",
+        subitems: [
+          {
+            "id": "15a",
+            "label": "a) Profilaxia antibiótica preconizada segundo a AHA e receituário pós-operatório",
+            "points": 15,
+            "options": [
+              {
+                letter: "A",
+                text: "Uso Interno: 1. Cefalexina 500mg ----- 4 comprimidos. Tomar 4 comprimidos (2g) 1 hora antes do procedimento.<br>2. Paracetamol 750mg ----- Tomar 1 comprimido de 6 em 6 horas.",
+                correct: false,
+                feedback: "As cefalosporinas são formalmente contraindicadas em pacientes com história de reação anafilática, urticária grave ou angioedema a penicilinas, devido ao risco de reatividade cruzada."
+              },
+              {
+                letter: "B",
+                text: "Uso Interno: 1. Amoxicilina 500mg ----- 4 comprimidos (2g). Tomar 1 hora antes.<br>2. Nimesulida 100mg ----- 1 comprimido de 12 em 12 horas.<br>Uso Externo: Digluconato de Clorexidina 0,12% ----- 100mL.",
+                correct: false,
+                feedback: "A paciente é expressamente alérgica a penicilinas (choque anafilático prévio). Além disso, nimesulida deve ser evitada em idosos pelo risco de toxicidade renal e cardiovascular."
+              },
+              {
+                letter: "C",
+                text: "Uso Interno: 1. Eritromicina 500mg ----- Tomar 2 comprimidos 1 hora antes.<br>2. Dipirona 500mg ----- Tomar a cada 4 horas.",
+                correct: false,
+                feedback: "A eritromicina não consta mais nas diretrizes da American Heart Association para profilaxia de endocardite devido à alta incidência de efeitos gastrointestinais e falhas farmacocinéticas."
+              },
+              {
+                letter: "D",
+                text: "Uso Interno: 1. Clindamicina 300mg ----- 2 comprimidos (600mg). Tomar 2 comprimidos em dose única por via oral 1 hora antes do procedimento.<br>2. Paracetamol 500mg ----- 12 comprimidos. Tomar 1 comprimido a cada 6 horas durante 3 dias se dor.<br>Uso Externo: Digluconato de Clorexidina 0,12% ----- 100mL. Bochechar 1 colher de sopa 3 vezes ao dia durante 7 dias.",
+                correct: true,
+                feedback: "Gabarito oficial: diretriz AHA da disciplina: paciente de alto risco (histórico de endocardite) alérgico a penicilinas recebe Clindamicina 600mg (2 cp de 300mg) em dose única oral 60 minutos antes da cirurgia. No pós-operatório: paracetamol 500mg (dose geriátrica recomendada, poupando função renal e hepática) e Clorexidina 0,12% 100mL em Uso Externo pois houve manipulação cirúrgica de tecidos bucais."
+              }
+            ],
+            handwrittenAnswer: "Uso Interno: 1. Clindamicina 300mg ----- 2 cp (600mg). Tomar 2 comprimidos 1 hora antes do procedimento cirúrgico. 2. Paracetamol 500mg ----- 12 cp. Tomar 1 comprimido a cada 6 horas por 3 dias. Uso Externo: Digluconato de clorexidina 0,12% ----- 100ml. Bochechar 1 colher de sopa 3x ao dia durante 7 dias."
+          }
+        ]
+      },
+      {
+        id: 16,
+        title: "Questão 16 – Herpes Simples Labial Recorrente (Prova 2023)",
+        totalPoints: 10,
+        theme: "Estomatologia / Infecções Virais Bucais",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 8 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "Paciente jovem de 18 anos apresenta-se ao consultório odontológico queixando-se de formigamento e surgimento de pequenas vesículas agrupadas no lábio superior (herpes labial em estágio inicial / fase prodômica). Solicita prescrição medicamentosa para alívio dos sintomas, diminuição da dor e redução do período infeccioso.",
+        subitems: [
+          {
+            "id": "16a",
+            "label": "a) Medicamento antiviral de escolha, apresentação, via e posologia",
+            "points": 10,
+            "options": [
+              {
+                letter: "A",
+                text: "Aciclovir creme 50mg/g (5%) ----- 1 bisnaga de 10g. Aplicar topicamente sobre a lesão 5 vezes ao dia com intervalos de aproximadamente 4 horas (pulando a dose noturna) durante 5 a 7 dias.",
+                correct: true,
+                feedback: "Gabarito oficial: conforme o protocolo de Estomatologia da UNIOESTE, o herpes simples labial recorrente em estágio inicial é tratado com Aciclovir creme a 5% aplicado topicamente 5 vezes ao dia (a cada 4 horas) durante 5 dias. Para lesões recorrentes frequentes ou mais extensas, preconiza-se alternativamente o Aciclovir comprimidos 200mg por via oral, 1 comprimido 5 vezes ao dia durante 5 dias."
+              },
+              {
+                letter: "B",
+                text: "Triancinolona acetonida 0,1% em pasta (Omcilon-A em Orabase) ----- 1 bisnaga. Aplicar topicamente sobre a lesão labial 3 vezes ao dia.",
+                correct: false,
+                feedback: "Corticoides tópicos como a triancinolona são formalmente CONTRAINDICADOS em lesões ativas por herpes simples, pois inibem a imunidade local e causam disseminação agressiva da replicação viral."
+              },
+              {
+                letter: "C",
+                text: "Nistatina 100.000 UI/mL suspensão oral ----- 1 frasco. Bochechar e aplicar sobre a lesão 4 vezes ao dia durante 14 dias.",
+                correct: false,
+                feedback: "A nistatina é um antifúngico poliénico sem qualquer atividade biológica contra o vírus Herpes simplex (HSV)."
+              },
+              {
+                letter: "D",
+                text: "Amoxicilina 500mg ----- 21 comprimidos. Tomar 1 comprimido a cada 8 horas durante 7 dias para evitar contaminação bacteriana secundária.",
+                correct: false,
+                feedback: "Antibióticos antibacterianos não atuam contra vírus e não devem ser usados de forma preventiva em lesões herpéticas labiais circunscritas."
+              }
+            ],
+            handwrittenAnswer: "Aciclovir creme 5% ----- 1 bisnaga. Aplicar no local da lesão 5 vezes ao dia durante 5 dias (ou Aciclovir 200mg VO 5 vezes ao dia por 5 dias)."
+          }
+        ]
+      },
+      {
+        id: 17,
+        title: "Questão 17 – Candidíase Oral Severa Refratária a Tópicos (Prova 2023)",
+        totalPoints: 10,
+        theme: "Terapêutica Antifúngica Sistêmica",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 9 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "Paciente de 51 anos comparece com candidose oral eritematosa severa no palato associada ao uso contínuo de prótese total superior. O paciente já realizou orientações rigorosas de higienização da prótese e utilizou antifúngico tópico (suspensão de Nistatina) por 14 dias sem melhora clínica significativa. Indique a terapêutica antifúngica sistêmica de escolha.",
+        subitems: [
+          {
+            "id": "17a",
+            "label": "a) Antifúngico sistêmico de escolha, dosagem e tempo de tratamento",
+            "points": 10,
+            "options": [
+              {
+                letter: "A",
+                text: "Metronidazol 400mg ----- 21 comprimidos. Tomar 1 comprimido a cada 8 horas durante 7 dias.",
+                correct: false,
+                feedback: "O metronidazol é um antimicrobiano ativo contra bactérias anaeróbias estritas e protozoários, sem nenhuma ação sobre Candida albicans."
+              },
+              {
+                letter: "B",
+                text: "Amoxicilina 500mg associada a Ácido Clavulânico ----- 21 comprimidos. Tomar 1 comprimido a cada 8 horas.",
+                correct: false,
+                feedback: "Antibióticos antibacterianos eliminam a microbiota residente e agravam a proliferação fúngica da candidíase."
+              },
+              {
+                letter: "C",
+                text: "Fluconazol 100mg (ou 150mg) ----- 1 caixa. Tomar 1 comprimido por dia durante 14 dias (ou 150mg em dose única semanal por 2 a 4 semanas).",
+                correct: true,
+                feedback: "Gabarito oficial: conforme o protocolo do Prof. Ediuilson e UNIOESTE: quando as medidas tópicas e a suspensão de nistatina são insuficientes ou pouco efetivas na candidíase bucal, o fármaco sistêmico de escolha é o Fluconazol (triazólico sistêmico) na posologia de 100mg diários durante 14 dias (ou 150mg dose única semanal). Paralelamente, mantém-se a orientação de não dormir com a prótese e desinfetá-la com clorexidina ou hipoclorito diluído."
+              },
+              {
+                letter: "D",
+                text: "Anfotericina B injetável intravenosa em infusão contínua durante 21 dias.",
+                correct: false,
+                feedback: "A anfotericina B parenteral possui extrema nefrotoxicidade e destina-se exclusivamente a micoses sistêmicas hospitalares profundas sob risco de morte."
+              }
+            ],
+            handwrittenAnswer: "Fluconazol 100mg (ou 150mg) ----- Tomar 1 comprimido por via oral ao dia durante 14 dias, mantendo as medidas de assepsia e não dormir com a prótese."
+          }
+        ]
+      },
+      {
+        id: 18,
+        title: "Questão 18 – Implantes Dentários e Ansiedade em Paciente Idoso (Prova 2023)",
+        totalPoints: 15,
+        theme: "Manejo Farmacológico no Paciente Geriátrico",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Questão 10 da Prova Oficial do 3º Bimestre 2023 (Prof. Ediuilson Ilo Lisbôa)",
+        scenario: "Paciente de 65 anos comparece para instalação cirúrgica de 2 implantes dentários convencionais em mandíbula, sem necessidade de enxerto ósseo. Na anamnese não apresenta doenças sistêmicas descompensadas, porém relata extrema ansiedade e tensão antes da consulta. Indique o receituário completo para controle da ansiedade e pós-operatório cirúrgico.",
+        subitems: [
+          {
+            "id": "18a",
+            "label": "a) Ansiolítico seguro para idosos e regime analgésico pós-operatório adequado",
+            "points": 15,
+            "options": [
+              {
+                letter: "A",
+                text: "Uso Interno: 1. Diazepam 10mg ----- 1 comprimido. Tomar 1 hora antes do procedimento.<br>2. Nimesulida 100mg ----- 1 comprimido de 12 em 12 horas por 3 dias.<br>Uso Externo: Digluconato de clorexidina 0,12% ----- 100mL.",
+                correct: false,
+                feedback: "O diazepam possui meia-vida longa e metabólitos ativos que se acumulam no idoso (risco de sedação prolongada e quedas). A nimesulida também deve ser evitada em idosos pelo risco cardiovascular e renal."
+              },
+              {
+                letter: "B",
+                text: "Uso Interno: 1. Lorazepam 1mg (ou 2mg) ----- 1 comprimido. Tomar 1 comprimido por via oral 1 hora antes do procedimento cirúrgico.<br>2. Paracetamol 500mg ----- 12 comprimidos. Tomar 1 comprimido a cada 6 horas durante 3 dias se dor.<br>Uso Externo: Digluconato de Clorexidina 0,12% ----- 100mL. Fazer bochechos com 1 colher de sopa 3 vezes ao dia durante 7 dias.",
+                correct: true,
+                feedback: "Gabarito oficial: o Lorazepam é o benzodiazepínico de eleição em idosos na disciplina (Prof. Ediuilson Lisbôa), pois sofre conjugação direta por glicuronidação sem gerar metabólitos ativos acumulativos, evitando sonolência residual excessiva e confusão mental. Na analgesia do idoso, a dose segura de paracetamol é 500mg (em vez de 750mg). Como houve intervenção cirúrgica tecidual (implantes), prescreve-se Clorexidina 0,12% 100mL em Uso Externo."
+              },
+              {
+                letter: "C",
+                text: "Uso Interno: 1. Midazolam 15mg ----- 1 comprimido 1h antes.<br>2. Paracetamol 750mg ----- 1 comprimido de 6 em 6 horas.<br>Sem prescrição de uso externo.",
+                correct: false,
+                feedback: "A dose de 15mg de midazolam é excessiva para idosos; paracetamol 750mg sobrecarrega a depuração geriátrica; e a cirurgia de implantes exige o bochecho pós-operatório com clorexidina 0,12%."
+              },
+              {
+                letter: "D",
+                text: "Uso Interno: 1. Fluoxetina 20mg ----- 1 cápsula 1 hora antes.<br>2. Cetoprofeno 100mg ----- 1 comprimido de 12 em 12 horas.<br>Uso Externo: Água oxigenada 10 volumes.",
+                correct: false,
+                feedback: "Fluoxetina é um antidepressivo com semanas de latência e sem ação ansiolítica aguda; AINEs fortes no idoso aumentam o risco de lesão gástrica e renal."
+              }
+            ],
+            handwrittenAnswer: "Uso Interno: 1. Lorazepam 1mg ----- 1 comprimido. Tomar 1 comprimido 1 hora antes da cirurgia. 2. Paracetamol 500mg ----- 12 comprimidos. Tomar 1 comprimido de 6 em 6 horas por 3 dias. Uso Externo: Digluconato de clorexidina 0,12% ----- 100ml. Bochecho 3x ao dia durante 7 dias."
+          }
+        ]
+      },
+      {
+        id: 19,
+        title: "Questão 19 – Cardiopata com Prótese Valvar e Doença Renal (Banco de Provas)",
+        totalPoints: 15,
+        theme: "Periodontia Cirúrgica em Pacientes Sistemicamente Comprometidos",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Caso Clínico 1 das Simulações de Prova do Prof. Ediuilson Ilo Lisbôa",
+        scenario: "Paciente de 58 anos, portador de prótese valvar cardíaca metálica e com histórico de doença renal crônica compensada. Necessita de raspagem periodontal em campo aberto (cirurgia com abertura e rebatimento gengival) devido à presença de bolsas periodontais profundas e cálculo subgengival extenso. Indique o receituário operatório completo com doses adaptadas.",
+        subitems: [
+          {
+            "id": "19a",
+            "label": "a) Profilaxia de endocardite e controle da dor seguros para paciente cardiopata renal",
+            "points": 15,
+            "options": [
+              {
+                letter: "A",
+                text: "Uso Interno: 1. Amoxicilina 500mg ----- 21 comprimidos. Tomar 1 comprimido de 8/8h por 7 dias.<br>2. Nimesulida 100mg ----- 6 comprimidos. Tomar de 12/12h por 3 dias.<br>Uso Externo: Digluconato de clorexidina 0,12% ----- 100mL.",
+                correct: false,
+                feedback: "A nimesulida é contraindicada formalmente em doentes renais pelo risco de insuficiência renal aguda; além disso, a dose de ataque profilática de 2g de amoxicilina 1h antes não foi observada."
+              },
+              {
+                letter: "B",
+                text: "Uso Interno: 1. Clindamicina 300mg ----- 2 comprimidos 1h antes.<br>2. Dipirona 1g ----- Tomar de 6 em 6 horas.<br>Sem prescrição de enxaguatório bucal.",
+                correct: false,
+                feedback: "O paciente não relatou alergia a penicilinas, portanto a amoxicilina é a primeira escolha; em cirurgia aberta com rebatimento tecidual, a clorexidina 0,12% é obrigatória."
+              },
+              {
+                letter: "C",
+                text: "Não prescrever profilaxia antibiótica para raspagem periodontal, apenas Paracetamol 750mg se houver dor.",
+                correct: false,
+                feedback: "Pacientes com prótese valvar cardíaca metálica submetidos a retalho cirúrgico periodontal têm indicação formal e absoluta de profilaxia de endocardite infecciosa pela AHA."
+              },
+              {
+                letter: "D",
+                text: "Uso Interno: 1. Amoxicilina 500mg ----- 21 comprimidos. Tomar 4 comprimidos (2g) 1 hora antes do procedimento cirúrgico e continuar 1 comprimido a cada 8 horas durante 7 dias.<br>2. Paracetamol 500mg ----- 12 comprimidos. Tomar 1 comprimido a cada 6 horas durante 3 dias se dor.<br>Uso Externo: Digluconato de clorexidina 0,12% ----- 100mL. Bochechos com 1 colher de sopa 3 vezes ao dia durante 7 dias.",
+                correct: true,
+                feedback: "Gabarito oficial: caso 1 dos slides e provas do Prof. Ediuilson: 1) Cardiopata com prótese valvar realizando manipulação cirúrgica periodontal cruenta tem indicação mandatória de profilaxia para endocardite com Amoxicilina 2g 1h antes, mantendo a cobertura curativa pós-operatória de 500mg 8/8h por 7 dias. 2) O doente renal NUNCA deve receber AINEs (como nimesulida ou ibuprofeno) devido à vasoconstrição glomerular e nefrotoxicidade grave; prescreve-se Paracetamol na dose renal conservadora de 500mg. 3) Como houve abertura de retalho gengival cirúrgico, Clorexidina 0,12% é obrigatória em Uso Externo."
+              }
+            ],
+            handwrittenAnswer: "Uso Interno: 1. Amoxicilina 500mg ----- 21 comprimidos. Tomar 4 cp (2g) 1 hora antes e 1 cp após de 8 em 8 horas por 7 dias. 2. Paracetamol 500mg ----- 12 comprimidos. Tomar 1 cp de 6 em 6 horas por 3 dias. Uso Externo: Digluconato de clorexidina 0,12% ----- 100ml. Bochecho 3x ao dia."
+          }
+        ]
+      },
+      {
+        id: 20,
+        title: "Questão 20 – Paciente com Gastrite Severa e Extração Dentária (Banco de Provas)",
+        totalPoints: 10,
+        theme: "Contraindicação a AINEs em Doença Péptica",
+        photoUrl: "assets/provas/foto_12.jpg",
+        photoAlt: "Caso Clínico 3 das Simulações de Prova do Prof. Ediuilson Ilo Lisbôa",
+        scenario: "Paciente de 34 anos apresenta-se com gastrite erosiva ativa documentada, sem outros problemas sistêmicos e sem uso contínuo de outros fármacos. Necessita de extração do dente 45 por indicação ortodôntica. Selecione a prescrição pós-operatória correta respeitando a integridade da mucosa gastrointestinal.",
+        subitems: [
+          {
+            "id": "20a",
+            "label": "a) Regime analgésico e cuidados pós-operatórios em paciente com gastrite",
+            "points": 10,
+            "options": [
+              {
+                letter: "A",
+                text: "Uso Interno: 1. Paracetamol 750mg ----- 12 comprimidos. Tomar 1 comprimido por via oral a cada 6 horas durante 3 dias se houver dor.<br>Uso Externo: 1. Digluconato de clorexidina 0,12% ----- 100mL. Fazer bochechos com 1 colher de sopa 3 vezes ao dia durante 7 dias.",
+                correct: true,
+                feedback: "Gabarito oficial: caso 3 do Prof. Ediuilson: pacientes com gastrite, úlcera péptica ou refluxo têm contraindicação formal a qualquer AINE (nimesulida, cetoprofeno, ibuprofeno, AAS, diclofenaco). O analgésico de eleição é o Paracetamol 750mg (ou Dipirona), que não inibe a COX gástrica. Como houve exodontia (intervenção em tecidos bucais), a clorexidina 0,12% é prescrita em Uso Externo."
+              },
+              {
+                letter: "B",
+                text: "Uso Interno: 1. Nimesulida 100mg ----- 6 comprimidos. Tomar 1 comprimido a cada 12 horas após as refeições para proteger o estômago.<br>2. Paracetamol 750mg ----- Tomar se dor.<br>Uso Externo: Digluconato de clorexidina 0,12% ----- 100mL.",
+                correct: false,
+                feedback: "A nimesulida, mesmo após refeições, bloqueia a síntese sistêmica de prostaglandinas protetoras (PGE2 e PGI2) gástricas, acarretando alto risco de hemorragia e exacerbação de úlceras."
+              },
+              {
+                letter: "C",
+                text: "Uso Interno: 1. Ácido Acetilsalicílico (AAS) 500mg ----- 12 comprimidos. Tomar 1 comprimido a cada 6 horas.<br>Uso Externo: Digluconato de clorexidina 0,12% ----- 100mL.",
+                correct: false,
+                feedback: "O AAS provoca agressão direta por aprisionamento iônico nas células parietais gástricas e inibição da COX-1, sendo o fármaco mais gastrolesivo e contraindicado em gastrite."
+              },
+              {
+                letter: "D",
+                text: "Uso Interno: 1. Amoxicilina 500mg ----- 21 comprimidos. Tomar 1 comprimido a cada 8 horas durante 7 dias.<br>2. Ibuprofeno 600mg associado a Omeprazol 20mg.",
+                correct: false,
+                feedback: "Não há indicação de antibiótico para extração eletiva simples em paciente hígido; associar AINE em paciente com gastrite ativa é clinicamente desaconselhado quando o paracetamol puro é perfeitamente eficaz."
+              }
+            ],
+            handwrittenAnswer: "Uso Interno: 1. Paracetamol 750mg ----- 12 comprimidos. Tomar 1 comprimido de 6 em 6 horas por 3 dias. Uso Externo: Digluconato de clorexidina 0,12% ----- 100ml. Bochecho com 1 colher de sopa 3x ao dia durante 7 dias."
+          }
+        ]
+      }
+
     ];
 
     // PROVAS CONTROLLER STATE
@@ -6126,13 +6734,15 @@
       renderProvaQuestion();
     }
 
-    function updateProvaScoreDisplay() {
+        function updateProvaScoreDisplay() {
       let score = 0;
       let answeredCount = 0;
+      let maxPoints = 0;
 
       PROVAS_DB.forEach(q => {
         let qAnswered = true;
         q.subitems.forEach(sub => {
+          maxPoints += sub.points;
           const chosen = provaUserAnswers[sub.id];
           if (chosen !== undefined) {
             if (sub.options[chosen] && sub.options[chosen].correct) {
@@ -6146,11 +6756,12 @@
       });
 
       provaTotalScore = score;
+      const pct = maxPoints > 0 ? Math.round((score / maxPoints) * 100) : 0;
       const scoreEl = document.getElementById('prova-score-display');
       const ansEl = document.getElementById('prova-answered-display');
 
-      if (scoreEl) scoreEl.innerText = `${score} / 100 Pts (${score}%)`;
-      if (ansEl) ansEl.innerText = `${answeredCount} / 8 Questões`;
+      if (scoreEl) scoreEl.innerText = `${score} / ${maxPoints} Pts (${pct}%)`;
+      if (ansEl) ansEl.innerText = `${answeredCount} / ${PROVAS_DB.length} Questões`;
     }
 
     function nextProvaQuestion() {
@@ -6160,7 +6771,7 @@
         const topEl = document.getElementById('section-provas');
         if (topEl) topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
-        alert(`Simulado Concluído! Sua pontuação final na Prova Real do 3º Bimestre foi: ${provaTotalScore} / 100 pontos.`);
+        alert(`Simulado Concluído! Sua pontuação final na Prova Real do 3º Bimestre foi: ${provaTotalScore} pontos no Simulado.`);
       }
     }
 
@@ -6225,7 +6836,234 @@
 
     }
 
-  </script>
+  
+    // PROTOCOLOS UNIOESTE MODAL CONTROLLER
+    function openUnioesteProtocolsModal() {
+      const modal = document.getElementById('modal-unioeste-protocols');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeUnioesteProtocolsModal() {
+      const modal = document.getElementById('modal-unioeste-protocols');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function filterUnioesteProtocols() {
+      const term = (document.getElementById('unioeste-proto-search')?.value || '').toLowerCase().trim();
+      const cards = document.querySelectorAll('.proto-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const kw = card.getAttribute('data-keywords') || '';
+        const match = (!term || text.includes(term) || kw.includes(term));
+        card.style.display = match ? 'block' : 'none';
+      });
+    }
+
+    function filterUnioesteCat(cat) {
+      document.querySelectorAll('.proto-cat-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = "btn-3d px-3 py-1.5 rounded-lg text-xs font-black btn-duo-purple text-white proto-cat-btn";
+        } else {
+          btn.className = "btn-3d px-3 py-1.5 rounded-lg text-xs font-black btn-duo-white text-slate-700 proto-cat-btn";
+        }
+      });
+
+      const cards = document.querySelectorAll('.proto-card');
+      cards.forEach(card => {
+        if (cat === 'todos' || card.getAttribute('data-cat') === cat) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+</script>
+
+
+    <!-- MODAL: PROTOCOLOS FARMACOLÓGICOS OFICIAIS UNIOESTE (PROF. EDIUILSON ILO LISBÔA) -->
+    <div id="modal-unioeste-protocols" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-5">
+      <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border-2 border-purple-300">
+        
+        <!-- MODAL HEADER -->
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-gradient-to-r from-purple-50 via-indigo-50 to-slate-50">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-purple-600 text-white flex items-center justify-center font-black shadow-md shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base sm:text-lg font-black text-slate-900 leading-tight">
+                Protocolos Farmacológicos UNIOESTE
+              </h3>
+              <p class="text-xs font-bold text-purple-700">
+                Prof. Dr. Ediuilson Ilo Lisbôa • Diretrizes Oficiais de Farmacologia Clínica Odontológica
+              </p>
+            </div>
+          </div>
+          <button onclick="closeUnioesteProtocolsModal()" class="btn-3d w-9 h-9 rounded-xl btn-duo-white text-slate-500 hover:text-slate-900 flex items-center justify-center shrink-0">
+            ✕
+          </button>
+        </div>
+
+        <!-- SEARCH & CATEGORY FILTER -->
+        <div class="p-3 sm:p-4 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2.5">
+          <div class="relative flex-1 min-w-[200px]">
+            <input type="text" id="unioeste-proto-search" oninput="filterUnioesteProtocols()" placeholder="Buscar por procedimento, dente, doença ou fármaco..." class="w-full text-xs font-bold py-2 pl-8 pr-3 bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400">
+            <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="unioeste-proto-cats">
+            <button onclick="filterUnioesteCat('todos')" class="btn-3d px-3 py-1.5 rounded-lg text-xs font-black btn-duo-purple text-white proto-cat-btn" data-cat="todos">Todos</button>
+            <button onclick="filterUnioesteCat('regras')" class="btn-3d px-3 py-1.5 rounded-lg text-xs font-black btn-duo-white text-slate-700 proto-cat-btn" data-cat="regras">10 Regras de Ouro</button>
+            <button onclick="filterUnioesteCat('cirurgia')" class="btn-3d px-3 py-1.5 rounded-lg text-xs font-black btn-duo-white text-slate-700 proto-cat-btn" data-cat="cirurgia">Cirurgia & Sisos</button>
+            <button onclick="filterUnioesteCat('endocardite')" class="btn-3d px-3 py-1.5 rounded-lg text-xs font-black btn-duo-white text-slate-700 proto-cat-btn" data-cat="endocardite">Profilaxia AHA</button>
+            <button onclick="filterUnioesteCat('pediatria')" class="btn-3d px-3 py-1.5 rounded-lg text-xs font-black btn-duo-white text-slate-700 proto-cat-btn" data-cat="pediatria">Pediatria</button>
+            <button onclick="filterUnioesteCat('endodontia')" class="btn-3d px-3 py-1.5 rounded-lg text-xs font-black btn-duo-white text-slate-700 proto-cat-btn" data-cat="endodontia">Endodontia</button>
+            <button onclick="filterUnioesteCat('estomatologia')" class="btn-3d px-3 py-1.5 rounded-lg text-xs font-black btn-duo-white text-slate-700 proto-cat-btn" data-cat="estomatologia">Estomatologia</button>
+          </div>
+        </div>
+
+        <!-- MODAL BODY CONTENT -->
+        <div class="p-4 sm:p-6 overflow-y-auto space-y-4 text-xs font-medium text-slate-700" id="unioeste-protocols-list">
+          
+          <!-- PROTOCOL 0: 10 REGRAS DE OURO DA RECEITA -->
+          <div class="p-5 rounded-2xl border-2 border-amber-300 bg-amber-50/70 space-y-3 proto-card" data-cat="regras" data-keywords="regras receita ouro ediuilson uso interno uso externo clorexidina">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-amber-500 text-white font-black flex items-center justify-center text-xs">⭐</span>
+              <h4 class="text-sm font-black text-amber-950 uppercase tracking-tight">As 10 Regras de Ouro da Receita Oficial do Prof. Ediuilson Ilo Lisbôa</h4>
+            </div>
+            <ul class="space-y-1.5 font-semibold text-slate-800 list-decimal list-inside leading-relaxed pl-1">
+              <li><strong>Cabeçalho Obrigatório:</strong> Em todas as provas, iniciar impreterivelmente com a palavra <em>"Receita"</em>, seguida de identificação, CRO (inventar) e data.</li>
+              <li><strong>Divisão Estrita de Vias:</strong> Separar categoricamente os medicamentos em <code>Uso Interno</code> e <code>Uso Externo</code> numerados com hífen (1-, 2-...).</li>
+              <li><strong>Regra Áurea da Clorexidina:</strong> Sempre que houver procedimento que envolva tecidos moles/duros (exodontias, implantes, raspagem cirúrgica, enxertos), prescrever <code>Digluconato de clorexidina 0,12% ----- 100mL</code> em <em>Uso Externo</em> (bochechos 1 colher de sopa 3x ao dia por 7 dias).</li>
+              <li><strong>Exceção da Drenagem Extraoral:</strong> Se a incisão e drenagem for exclusivamente cutânea/extraoral (sem ferida cirúrgica dentro da boca), <strong>NÃO</strong> prescrever Clorexidina bucal!</li>
+              <li><strong>Infecções Agudas com Pus/Febre:</strong> <strong>EVITAR</strong> AINEs e corticoides no auge de abscessos bacterianos graves e celulites para não deprimir a resposta imunológica e não mascarar bacteremia; prescrever antibiótico + Paracetamol (ou Dipirona).</li>
+              <li><strong>Dose Geriátrica e Renal:</strong> Idosos e doentes renais crônicos recebem <code>Paracetamol 500mg</code> (1 cp de 6/6h por 3 dias), <strong>nunca</strong> 750mg!</li>
+              <li><strong>Ansiedade no Idoso:</strong> Benzodiazepínico de escolha é <code>Lorazepam 1mg</code> 1h antes (conjugação direta sem metabólitos acumulativos), nunca Diazepam 10mg.</li>
+              <li><strong>Dor Refratária Pós-Cirúrgica:</strong> Quando o paciente já toma analgésico comum/AINE e relata dor persistente intensa, associar <code>Paracetamol 500mg + Fosfato de Codeína 30mg</code> de 6/6h por 3 dias.</li>
+              <li><strong>Gastrite, Úlcera e Anticoagulados (Varfarina):</strong> Contraindicação formal a qualquer AINE (nimesulida, cetoprofeno, ibuprofeno, diclofenaco, AAS). Prescrever exclusivamente Paracetamol (ou Dipirona).</li>
+              <li><strong>Sem Espaços em Branco:</strong> Traçar hifens até a quantidade para não deixar lacunas no receituário oficial.</li>
+            </ul>
+          </div>
+
+          <!-- PROTOCOL 1: CIRURGIA BUCAL DE MAIOR COMPLEXIDADE (SISOS / OSTECTOMIA) -->
+          <div class="p-5 rounded-2xl border-2 border-slate-200 bg-white space-y-3 proto-card" data-cat="cirurgia" data-keywords="cirurgia sisos osteotomia dexametasona nimesulida paracetamol clorexidina 38 48">
+            <div class="flex items-center justify-between border-b pb-2">
+              <h4 class="text-sm font-black text-slate-900">Cirurgia de Terceiros Molares Inclusos / Cruentas com Osteotomia</h4>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-purple-100 text-purple-800 uppercase">Cirurgia Bucal</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="bg-purple-50/60 p-3 rounded-xl border border-purple-200">
+                <span class="font-black text-purple-900 block text-[11px] uppercase mb-1">Pré-Operatório (Preemptivo):</span>
+                <p class="font-mono text-xs text-slate-800">1- Dexametasona 4mg ----- 1 comprimido<br>Tomar 1 comprimido por via oral 1 hora antes da cirurgia.<br><em>Se ansioso:</em> Midazolam 15mg (ou 7,5mg) 1h antes.</p>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <span class="font-black text-slate-900 block text-[11px] uppercase mb-1">Pós-Operatório Modelo:</span>
+                <p class="font-mono text-xs text-slate-800"><strong>Uso Interno:</strong><br>1- Paracetamol 750mg ----- 12 comprimidos (1 cp 6/6h por 3 dias)<br>2- Nimesulida 100mg ----- 6 comprimidos (1 cp 12/12h por 3 dias)<br><strong>Uso Externo:</strong><br>1- Digluconato de clorexidina 0,12% ----- 100mL (3x/dia por 7 dias)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROTOCOL 2: PROFILAXIA DE ENDOCARDITE BACTERIANA AHA -->
+          <div class="p-5 rounded-2xl border-2 border-slate-200 bg-white space-y-3 proto-card" data-cat="endocardite" data-keywords="endocardite bacteriana cardiopata valvopatia protese valvar amoxicilina clindamicina aha profilaxia">
+            <div class="flex items-center justify-between border-b pb-2">
+              <h4 class="text-sm font-black text-slate-900">Profilaxia de Endocardite Bacteriana (Diretriz AHA 2010 / UNIOESTE)</h4>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 uppercase">Cardiologia / AHA</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed"><strong>Indicações precisas:</strong> Prótese valvar cardíaca (biológica ou mecânica), histórico documentado de endocardite prévia, cardiopatias congênitas cianóticas não reparadas e valvopatia em transplantado cardíaco.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="bg-emerald-50/70 p-3 rounded-xl border border-emerald-200">
+                <span class="font-black text-emerald-950 block text-[11px] uppercase mb-1">Padrão (Não Alérgico à Penicilina):</span>
+                <p class="font-mono text-xs text-slate-800">1- Amoxicilina 500mg ----- 4 comprimidos (2g)<br>Tomar 4 comprimidos em dose única por via oral 1 hora antes do procedimento cirúrgico.</p>
+              </div>
+              <div class="bg-rose-50/70 p-3 rounded-xl border border-rose-200">
+                <span class="font-black text-rose-950 block text-[11px] uppercase mb-1">Alérgico a Penicilinas:</span>
+                <p class="font-mono text-xs text-slate-800">1- Clindamicina 300mg ----- 2 comprimidos (600mg)<br>Tomar 2 comprimidos em dose única por via oral 1 hora antes do procedimento.<br><em>(Ou Azitromicina 500mg 1h antes)</em></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROTOCOL 3: ODONTOPEDIATRIA (CÁLCULOS POR KG) -->
+          <div class="p-5 rounded-2xl border-2 border-slate-200 bg-white space-y-3 proto-card" data-cat="pediatria" data-keywords="pediatria odontopediatria gotas peso amoxicilina paracetamol ibuprofeno suspensao decíduo crianca">
+            <div class="flex items-center justify-between border-b pb-2">
+              <h4 class="text-sm font-black text-slate-900">Odontopediatria: Cálculos Rigorosos por Peso Corpóreo</h4>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-sky-100 text-sky-800 uppercase">Odontopediatria</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="bg-sky-50/60 p-3 rounded-xl border border-sky-200 space-y-1">
+                <span class="font-black text-sky-950 block text-[11px] uppercase">Amoxicilina Suspensão</span>
+                <p class="text-[11px] text-slate-700"><strong>Dose:</strong> 50 mg/kg/dia divididos de 8/8h.<br>Concentração: 250mg/5mL (50mg/mL).<br><strong>Fórmula rápida:</strong> <code>mL por tomada = (Peso × 50) ÷ 150</code>.<br>Ex: 18 kg = 6 mL de 8 em 8 horas por 7 dias.</p>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1">
+                <span class="font-black text-slate-900 block text-[11px] uppercase">Paracetamol Gotas</span>
+                <p class="text-[11px] text-slate-700"><strong>Dose:</strong> 1 gota por kg de peso corporal a cada 6 horas por até 3 dias se dor/febre.<br>Concentração: 200mg/mL.<br><em>Limite:</em> máximo 35 gotas por tomada.</p>
+              </div>
+              <div class="bg-amber-50/60 p-3 rounded-xl border border-amber-200 space-y-1">
+                <span class="font-black text-amber-950 block text-[11px] uppercase">Ibuprofeno Gotas</span>
+                <p class="text-[11px] text-slate-700"><strong>Dose:</strong> 1 gota por kg de peso corporal a cada 6 ou 8 horas por até 3 dias.<br>Concentração: 100mg/mL ou 200mg/mL.<br>Excelente efeito analgésico e anti-inflamatório.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROTOCOL 4: ENDODONTIA & PULPITE IRREVERSÍVEL -->
+          <div class="p-5 rounded-2xl border-2 border-slate-200 bg-white space-y-3 proto-card" data-cat="endodontia" data-keywords="endodontia pulpite dor canal dexametasona codeina paracetamol parendodontica abscesso">
+            <div class="flex items-center justify-between border-b pb-2">
+              <h4 class="text-sm font-black text-slate-900">Endodontia: Pulpite Irreversível & Dor Intensa Refratária</h4>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-rose-100 text-rose-800 uppercase">Endodontia</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="bg-rose-50/60 p-3 rounded-xl border border-rose-200">
+                <span class="font-black text-rose-950 block text-[11px] uppercase mb-1">Pulpite Irreversível Sintomática:</span>
+                <p class="font-mono text-xs text-slate-800">1- Dexametasona 4mg ----- 1 comprimido em dose única agora.<br>2- Paracetamol 500mg + Fosfato de Codeína 30mg ----- 8 comprimidos (1 cp 6/6h se dor intensa refratária).<br><em>Nota:</em> Antibiótico não é indicado se não houver celulite periapical.</p>
+              </div>
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <span class="font-black text-slate-900 block text-[11px] uppercase mb-1">Abscesso Periapical com Febre e Celulite:</span>
+                <p class="font-mono text-xs text-slate-800">1- Amoxicilina 500mg + Clavulanato de potássio 125mg ----- 21 comprimidos (1 cp 8/8h por 7 dias).<br>2- Paracetamol 750mg ----- 12 comprimidos (1 cp 6/6h por 3 dias).<br>Evitar AINEs na fase purulenta aguda.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROTOCOL 5: ESTOMATOLOGIA (AFTA, HERPES, CANDIDÍASE) -->
+          <div class="p-5 rounded-2xl border-2 border-slate-200 bg-white space-y-3 proto-card" data-cat="estomatologia" data-keywords="estomatologia afta herpes candidiase nistatina fluconazol omcilon aciclovir protese">
+            <div class="flex items-center justify-between border-b pb-2">
+              <h4 class="text-sm font-black text-slate-900">Estomatologia: Aftas, Herpes Simples Labial & Candidíase Oral</h4>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-indigo-100 text-indigo-800 uppercase">Estomatologia</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-1">
+                <span class="font-black text-slate-900 block text-[11px] uppercase">Úlceras Aftosas (Aftas)</span>
+                <p class="text-[11px] text-slate-700"><strong>Tópico:</strong> Triancinolona acetonida 0,1% em Orabase (Omcilon-A) 2 a 3x/dia após refeições.<br><strong>Aftas Gigantes/Múltiplas:</strong> Prednisona 5mg em esquema regressivo (3 cp/dia por 3 dias; 2 cp/dia por 2 dias; 1 cp no 6º dia).</p>
+              </div>
+              <div class="bg-amber-50/60 p-3 rounded-xl border border-amber-200 space-y-1">
+                <span class="font-black text-amber-950 block text-[11px] uppercase">Herpes Simples Labial</span>
+                <p class="text-[11px] text-slate-700"><strong>Fase Inicial:</strong> Aciclovir creme 5% aplicar topicamente 5x/dia (a cada 4h pulando a noite) por 5 dias.<br><strong>Sistêmico se extenso:</strong> Aciclovir 200mg VO 5x/dia por 5 dias.<br><em>Alerta:</em> Corticoide é CONTRAINDICADO em herpes!</p>
+              </div>
+              <div class="bg-purple-50/60 p-3 rounded-xl border border-purple-200 space-y-1">
+                <span class="font-black text-purple-950 block text-[11px] uppercase">Candidíase / Prótese</span>
+                <p class="text-[11px] text-slate-700"><strong>1ª Linha:</strong> Nistatina suspensão 100.000 UI/mL bochechar e engolir 4x/dia por 14 dias.<br><strong>Refratária / Severa:</strong> Fluconazol 100mg ou 150mg VO ao dia por 14 dias.<br>Não dormir com a prótese e desinfetá-la.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- MODAL FOOTER -->
+        <div class="p-3 sm:p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-500">
+            Fonte: Protocolos Farmacológicos na Odontologia • UNIOESTE Cascavel (Prof. Ediuilson Ilo Lisbôa)
+          </span>
+          <button onclick="closeUnioesteProtocolsModal()" class="btn-3d px-5 py-2 rounded-xl text-xs font-black btn-duo-purple text-white">
+            Fechar Caderno
+          </button>
+        </div>
+
+      </div>
+    </div>
 
 </body>
 

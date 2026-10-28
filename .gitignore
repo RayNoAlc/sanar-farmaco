@@ -6,6 +6,7 @@ node_modules/
 android/app/build/
 android/.gradle/
 *.apk
+extracted_content/
 
 # OS files
 .DS_Store
