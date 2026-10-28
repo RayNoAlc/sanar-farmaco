@@ -1607,7 +1607,7 @@
 
         contraindications: 'Alergia/hipersensibilidade a penicilinas (choque anafilático).',
 
-        dangerBadge: 'Alérgicos a Penicilina',
+        dangerBadge: '1ª Linha em Odontologia',
 
         standardQty: '21 cp',
 
@@ -1683,7 +1683,7 @@
 
         id: 'amoxi_ped',
 
-        name: 'Amoxicilina Suspensão Oral (Pediátrico)',
+        name: 'Amoxicilina Suspensão',
 
         strength: '250 mg / 5 mL',
 
@@ -1697,7 +1697,7 @@
 
         contraindications: 'Crianças alérgicas a penicilinas.',
 
-        dangerBadge: '50mg/kg/dia (Cálculo por Peso)',
+        dangerBadge: '50 mg/kg/dia',
 
         standardQty: '1 frasco',
 
@@ -1719,7 +1719,7 @@
 
         class: 'antibiotico',
 
-        classesText: 'Lincosamida (Escolha para Alérgicos)',
+        classesText: 'Lincosamida',
 
         profiles: ['alergico', 'protese'],
 
@@ -1749,7 +1749,7 @@
 
         class: 'analgesico',
 
-        classesText: 'Analgésico e Antipirético Central',
+        classesText: 'Analgésico & Antipirético',
 
         profiles: ['higido', 'cardiopata', 'diabetico', 'gastrite', 'varfarina', 'gestante'],
 
@@ -1757,7 +1757,7 @@
 
         contraindications: 'Insuficiência hepática grave.',
 
-        dangerBadge: 'Seguro em Cardiopatas e Gastrite',
+        dangerBadge: 'Seguro em Gastrite',
 
         standardQty: '12 cp',
 
@@ -1779,7 +1779,7 @@
 
         class: 'analgesico',
 
-        classesText: 'Analgésico Ajustado',
+        classesText: 'Analgésico Geriátrico / Renal',
 
         profiles: ['idoso', 'renal'],
 
@@ -1787,7 +1787,7 @@
 
         contraindications: 'Hepatopatia terminal.',
 
-        dangerBadge: 'Dose Ajustada para Idosos',
+        dangerBadge: 'Dose Idoso & Renal (500mg)',
 
         standardQty: '12 cp',
 
@@ -1803,13 +1803,13 @@
 
         id: 'paracet_ped',
 
-        name: 'Paracetamol Gotas (Pediátrico)',
+        name: 'Paracetamol Gotas',
 
         strength: '200 mg / mL',
 
         class: 'analgesico',
 
-        classesText: 'Analgésico Pediátrico em Gotas',
+        classesText: 'Analgésico Pediátrico',
 
         profiles: ['crianca'],
 
@@ -1817,7 +1817,7 @@
 
         contraindications: 'Hepatopatias raras na infância.',
 
-        dangerBadge: '1 gota por kg de peso',
+        dangerBadge: '1 gota/kg (Máx. 35)',
 
         standardQty: '1 frasco',
 
@@ -1833,13 +1833,13 @@
 
         id: 'ibuprof_ped',
 
-        name: 'Ibuprofeno Gotas (Pediátrico)',
+        name: 'Ibuprofeno Gotas',
 
         strength: '100 mg / mL (ou 200mg/mL)',
 
         class: 'aine',
 
-        classesText: 'AINE e Analgésico Pediátrico',
+        classesText: 'AINE Pediátrico',
 
         profiles: ['crianca'],
 
@@ -1847,7 +1847,7 @@
 
         contraindications: 'Dengue suspeita, insuficiência renal congênita, gastrite infantil grave.',
 
-        dangerBadge: '1 gota por kg de peso',
+        dangerBadge: '1 gota / kg de peso',
 
         standardQty: '1 frasco',
 
@@ -1877,7 +1877,7 @@
 
         contraindications: 'HIPERTENSÃO, CARDIOPATIA, INSUFICIÊNCIA RENAL, GASTRITE/ÚLCERA, DIABETES DESCOMPENSADA, VARFARINA, IDOSOS E CRIANÇAS.',
 
-        dangerBadge: 'PROIBIDO EM ESPECIAIS',
+        dangerBadge: 'Evitar em Gastrite / Idosos',
 
         standardQty: '6 cp',
 
@@ -1907,7 +1907,7 @@
 
         contraindications: 'Infecções fúngicas sistêmicas, tuberculose ativa, uso prolongado não monitorado.',
 
-        dangerBadge: 'Dose Única 1h Antes',
+        dangerBadge: 'Dose Única Preemptiva',
 
         standardQty: '1 cp',
 
@@ -2019,7 +2019,7 @@
 
         class: 'antisseptico',
 
-        classesText: 'Antisséptico Tópico Bucal (Uso Externo)',
+        classesText: 'Antisséptico Bucal',
 
         profiles: ['higido', 'idoso', 'crianca', 'cardiopata', 'diabetico', 'renal', 'gastrite', 'varfarina', 'gestante', 'alergico'],
 
@@ -2027,7 +2027,7 @@
 
         contraindications: 'Não ingerir.',
 
-        dangerBadge: 'Obrigatório em Cirurgias',
+        dangerBadge: 'Uso Externo Obrigatório',
 
         standardQty: '100 mL',
 
@@ -2079,7 +2079,7 @@
 
         class: 'antifungico',
 
-        classesText: 'Antiviral Tópico (Uso Externo)',
+        classesText: 'Antiviral Tópico',
 
         profiles: ['higido'],
 
@@ -2087,7 +2087,7 @@
 
         contraindications: 'Não aplicar em mucosas internas oculares.',
 
-        dangerBadge: '5x ao dia diurno',
+        dangerBadge: 'Herpes em Fase Inicial',
 
         standardQty: '1 bisnaga',
 
@@ -4476,19 +4476,21 @@
         return `
         <div class="card-duo p-5 sm:p-6 flex flex-col justify-between h-full hover:translate-y-[-2px] transition bg-white rounded-3xl border-2 border-slate-200">
           <div class="flex-1 flex flex-col space-y-3.5">
-            <!-- TOP BADGES ROW -->
-            <div class="flex items-center justify-between gap-2">
-              <span class="inline-flex items-center px-2.5 py-1 rounded-xl text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200">
+                        <!-- TOP BADGES ROW (CLEAN WRAP, NEVER BREAKS BADGE WORDS) -->
+            <div class="flex flex-wrap items-center gap-1.5 min-h-[26px]">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200 whitespace-nowrap shrink-0">
                 ${d.classesText}
               </span>
-              <span class="inline-flex items-center px-2.5 py-1 rounded-xl text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 shrink-0">
-                ${d.dangerBadge || 'Padrão'}
-              </span>
+              ${d.dangerBadge ? `
+                <span class="inline-flex items-center px-2 py-0.5 rounded-lg text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-amber-50 text-amber-900 border border-amber-300 whitespace-nowrap shrink-0">
+                  ${d.dangerBadge}
+                </span>
+              ` : ''}
             </div>
 
             <!-- DRUG TITLE & STRENGTH -->
-            <div class="flex items-start justify-between gap-2">
-              <h3 class="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-tight">${d.name}</h3>
+            <div class="flex items-start justify-between gap-2 pt-0.5">
+              <h3 class="font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-snug min-w-0">${d.name}</h3>
               <span class="text-xs font-black text-slate-700 bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-xl font-mono shrink-0 whitespace-nowrap">${d.strength}</span>
             </div>
 
