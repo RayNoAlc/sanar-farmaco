@@ -23,7 +23,7 @@
           '<html lang="pt-BR">' +
           '<head>' +
             '<meta charset="UTF-8">' +
-            '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+            '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">' +
             '<title>Sanar Farmaco • Manutenção do Sistema</title>' +
             '<style>' +
               '* { box-sizing: border-box; margin: 0; padding: 0; }' +
@@ -528,6 +528,35 @@
 
     }
 
+    :root {
+      --sat: env(safe-area-inset-top, 0px);
+      --sab: env(safe-area-inset-bottom, 0px);
+      --sal: env(safe-area-inset-left, 0px);
+      --sar: env(safe-area-inset-right, 0px);
+    }
+
+    /* NATIVE MOBILE TOUCH & VERTICAL SCREEN ERGONOMICS */
+    html, body {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      overscroll-behavior-y: contain;
+    }
+
+    .custom-scroll, .overflow-x-auto, .overflow-y-auto {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-header-safe {
+      padding-top: max(8px, env(safe-area-inset-top));
+    }
+
+    .mobile-bottom-safe {
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+
+  
+
   </style>
 
 </head>
@@ -544,7 +573,7 @@
 
   <!-- ======================================================== -->
 
-  <header class="bg-white border-b-2 border-slate-200 sticky top-0 z-40">
+  <header class="bg-white border-b-2 border-slate-200 sticky top-0 z-40 mobile-header-safe">
 
     <div class="max-w-6xl mx-auto px-4 py-2.5 sm:py-3 flex items-center justify-between gap-3">
 
@@ -613,22 +642,7 @@
 
     </div>
 
-    <!-- MOBILE NAVIGATION BAR -->
 
-    <div class="md:hidden flex border-t border-slate-200 bg-slate-50 px-2.5 py-2 gap-1.5 overflow-x-auto">
-      <button onclick="switchTab('minigame')" id="m-nav-minigame" class="flex-1 min-w-[70px] h-9 px-1 rounded-xl text-[11px] font-black text-center flex items-center justify-center bg-duo-blue text-white shadow-sm shrink-0 whitespace-nowrap">
-        Simulador
-      </button>
-      <button onclick="switchTab('provas')" id="m-nav-provas" class="flex-1 min-w-[70px] h-9 px-1 rounded-xl text-[11px] font-black text-center flex items-center justify-center bg-white text-slate-600 border border-slate-300 shrink-0 whitespace-nowrap">
-        Provas Reais
-      </button>
-      <button onclick="switchTab('quiz')" id="m-nav-quiz" class="flex-1 min-w-[70px] h-9 px-1 rounded-xl text-[11px] font-black text-center flex items-center justify-center bg-white text-slate-600 border border-slate-300 shrink-0 whitespace-nowrap">
-        Estudo Ativo
-      </button>
-      <button onclick="switchTab('sanarbook')" id="m-nav-sanarbook" class="flex-1 min-w-[70px] h-9 px-1 rounded-xl text-[11px] font-black text-center flex items-center justify-center bg-white text-slate-600 border border-slate-300 shrink-0 whitespace-nowrap">
-        Sanarbook
-      </button>
-    </div>
 
   </header>
 
@@ -638,7 +652,7 @@
 
   <!-- ======================================================== -->
 
-  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6">
+  <main class="flex-1 max-w-6xl w-full mx-auto px-3.5 sm:px-4 py-4 sm:py-6 pb-24 md:pb-6">
 
     <!-- ==================================================== -->
 
@@ -1507,9 +1521,42 @@
 
     </div>
 
-    <!-- PHOTO MODAL VIEWER -->
-    <div id="modal-prova-photo" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center p-4">
-      <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border-2 border-purple-300">
+    
+  <!-- NATIVE MOBILE BOTTOM NAVIGATION BAR (THUMB ZONE) -->
+  <nav id="mobile-bottom-nav" class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] px-2 pt-1.5 mobile-bottom-safe flex items-center justify-around gap-1">
+    <button onclick="switchTab('minigame')" id="m-nav-minigame" class="flex-1 flex flex-col items-center justify-center py-1 transition group">
+      <div class="m-icon-box w-8 h-8 rounded-xl flex items-center justify-center mb-0.5 transition bg-blue-50 text-duo-blue">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+      </div>
+      <span class="m-label text-[10px] font-black tracking-tight leading-none text-duo-blue">Simulador</span>
+    </button>
+
+    <button onclick="switchTab('provas')" id="m-nav-provas" class="flex-1 flex flex-col items-center justify-center py-1 transition group">
+      <div class="m-icon-box w-8 h-8 rounded-xl flex items-center justify-center mb-0.5 transition bg-transparent text-slate-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      </div>
+      <span class="m-label text-[10px] font-black tracking-tight leading-none text-slate-400">Provas Reais</span>
+    </button>
+
+    <button onclick="switchTab('quiz')" id="m-nav-quiz" class="flex-1 flex flex-col items-center justify-center py-1 transition group">
+      <div class="m-icon-box w-8 h-8 rounded-xl flex items-center justify-center mb-0.5 transition bg-transparent text-slate-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <span class="m-label text-[10px] font-black tracking-tight leading-none text-slate-400">Estudo Ativo</span>
+    </button>
+
+    <button onclick="switchTab('sanarbook')" id="m-nav-sanarbook" class="flex-1 flex flex-col items-center justify-center py-1 transition group">
+      <div class="m-icon-box w-8 h-8 rounded-xl flex items-center justify-center mb-0.5 transition bg-transparent text-slate-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      </div>
+      <span class="m-label text-[10px] font-black tracking-tight leading-none text-slate-400">Sanarbook</span>
+    </button>
+  </nav>
+
+
+  <!-- PHOTO MODAL VIEWER -->
+    <div id="modal-prova-photo" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white rounded-t-3xl sm:rounded-3xl max-w-4xl w-full h-[92vh] sm:h-auto sm:max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border-2 border-purple-300">
         <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-purple-50">
           <div>
             <h4 class="text-sm sm:text-base font-black text-slate-900" id="modal-photo-title">
@@ -3365,25 +3412,43 @@
       if (mQuiz) mQuiz.className = MOB_INACTIVE;
       if (mSanar) mSanar.className = MOB_INACTIVE;
 
+      // Update Desktop Nav Tabs
       if (tab === 'minigame') {
         secMinigame.classList.remove('hidden');
         tabMini.className = "btn-3d btn-nav-tab btn-duo-blue";
-        if (mMini) mMini.className = "flex-1 min-w-[70px] h-9 px-1 rounded-xl text-[11px] font-black text-center flex items-center justify-center bg-duo-blue text-white shadow-sm shrink-0 whitespace-nowrap";
       } else if (tab === 'provas') {
         if (secProvas) secProvas.classList.remove('hidden');
         if (tabProvas) tabProvas.className = "btn-3d btn-nav-tab btn-duo-purple text-white";
-        if (mProvas) mProvas.className = "flex-1 min-w-[70px] h-9 px-1 rounded-xl text-[11px] font-black text-center flex items-center justify-center bg-purple-600 text-white shadow-sm shrink-0 whitespace-nowrap";
         renderProvaQuestion();
       } else if (tab === 'quiz') {
         if (secQuiz) secQuiz.classList.remove('hidden');
         if (tabQuiz) tabQuiz.className = "btn-3d btn-nav-tab btn-duo-amber text-white";
-        if (mQuiz) mQuiz.className = "flex-1 min-w-[70px] h-9 px-1 rounded-xl text-[11px] font-black text-center flex items-center justify-center bg-amber-500 text-white shadow-sm shrink-0 whitespace-nowrap";
         renderQuizQuestion();
       } else {
         secSanarbook.classList.remove('hidden');
         tabSanar.className = "btn-3d btn-nav-tab btn-duo-green text-white";
-        if (mSanar) mSanar.className = "flex-1 min-w-[70px] h-9 px-1 rounded-xl text-[11px] font-black text-center flex items-center justify-center bg-duo-green text-white shadow-sm shrink-0 whitespace-nowrap";
       }
+
+      // Update Native Mobile Bottom Nav Bar
+      const mobileNavConfig = [
+        { id: 'minigame', el: mMini, color: 'text-duo-blue', bg: 'bg-blue-50' },
+        { id: 'provas', el: mProvas, color: 'text-purple-700', bg: 'bg-purple-100' },
+        { id: 'quiz', el: mQuiz, color: 'text-amber-700', bg: 'bg-amber-100' },
+        { id: 'sanarbook', el: mSanar, color: 'text-emerald-700', bg: 'bg-emerald-100' }
+      ];
+
+      mobileNavConfig.forEach(cfg => {
+        if (!cfg.el) return;
+        const iconBox = cfg.el.querySelector('.m-icon-box');
+        const label = cfg.el.querySelector('.m-label');
+        if (cfg.id === tab) {
+          if (iconBox) iconBox.className = `m-icon-box w-8 h-8 rounded-xl flex items-center justify-center mb-0.5 transition ${cfg.bg} ${cfg.color}`;
+          if (label) label.className = `m-label text-[10px] font-black tracking-tight leading-none ${cfg.color}`;
+        } else {
+          if (iconBox) iconBox.className = "m-icon-box w-8 h-8 rounded-xl flex items-center justify-center mb-0.5 transition bg-transparent text-slate-400";
+          if (label) label.className = "m-label text-[10px] font-black tracking-tight leading-none text-slate-400";
+        }
+      });
     }
 
     function updateProgressDisplay() {
@@ -6885,12 +6950,58 @@
       });
     }
 
+
+    // ANDROID HARDWARE BACK BUTTON HANDLER FOR VERTICAL SCREEN APK
+    function initAndroidHardwareBack() {
+      if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App) {
+        window.Capacitor.Plugins.App.addListener('backButton', ({ canGoBack }) => {
+          handleMobileBackPress();
+        });
+      }
+
+      window.addEventListener('popstate', () => {
+        handleMobileBackPress();
+      });
+    }
+
+    function handleMobileBackPress() {
+      // 1. Close UNIOESTE protocols modal if open
+      const protoModal = document.getElementById('modal-unioeste-protocols');
+      if (protoModal && !protoModal.classList.contains('hidden')) {
+        closeUnioesteProtocolsModal();
+        return;
+      }
+
+      // 2. Close photo modal if open
+      const photoModal = document.getElementById('modal-prova-photo');
+      if (photoModal && !photoModal.classList.contains('hidden')) {
+        closeProvaPhotoModal();
+        return;
+      }
+
+      // 3. If in other tab, switch back to home (minigame)
+      const secMinigame = document.getElementById('section-minigame');
+      if (secMinigame && secMinigame.classList.contains('hidden')) {
+        switchTab('minigame');
+        return;
+      }
+
+      // 4. Exit app if already at home
+      if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App) {
+        window.Capacitor.Plugins.App.exitApp();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAndroidHardwareBack();
+    });
+
 </script>
 
 
     <!-- MODAL: PROTOCOLOS FARMACOLÓGICOS OFICIAIS UNIOESTE (PROF. EDIUILSON ILO LISBÔA) -->
-    <div id="modal-unioeste-protocols" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-5">
-      <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border-2 border-purple-300">
+    <div id="modal-unioeste-protocols" class="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-5">
+      <div class="bg-white rounded-t-3xl sm:rounded-3xl max-w-4xl w-full h-[92vh] sm:h-auto sm:max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border-2 border-purple-300">
         
         <!-- MODAL HEADER -->
         <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-gradient-to-r from-purple-50 via-indigo-50 to-slate-50">
